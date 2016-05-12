@@ -17,6 +17,10 @@ body {
   color: #2f4f4f;
 }
 
+section {
+  display: none;
+}
+
 article {
   margin-bottom: 5%;
 }
@@ -48,3 +52,4 @@ a:hover {
 .nav-text {
   display: none;
 }
+

@@ -40,29 +40,62 @@
         <header>
             <nav>
                 <ul id="nav-bar">
-                    <li><a href="#"><span class="icon-home"><svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg></span><span class="nav-text">Home</span></a></li>
-                    <li><a href="#"><span class="icon-image"><svg class="icon icon-image"><use xlink:href="#icon-image"></use></svg></span><span class="nav-text">Projects</span></a></li>
-                    <li><a href="#"><span class="icon-pencil"><svg class="icon icon-pencil"><use xlink:href="#icon-pencil"></use></svg></span><span class="nav-text">Blog</span></a></li>
+                    <li><a href="#" class="tab-content"><span class="icon-home"><svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg></span><span class="nav-text">Home</span></a></li>
+                    <li><a href="#" class="tab-content"><span class="icon-image"><svg class="icon icon-image"><use xlink:href="#icon-image"></use></svg></span><span class="nav-text">Projects</span></a></li>
+                    <li><a href="#" class="tab-content"><span class="icon-pencil"><svg class="icon icon-pencil"><use xlink:href="#icon-pencil"></use></svg></span><span class="nav-text">Blog</span></a></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <section id="home">
-<!--This is should contain a static profile pic image and a pitch about me-->        
+            <section id="home">        
                 <div class="row">
                     <div class="six columns"><img src="img/profilepic.jpg"></div>
                     <div class="six columns">Pitch/Summary</div>
                 </div>
             </section>
             <section id="projects">
-<!--This section should contain my projects that are sourced from api-->        
-                <div class="row">
-                    <div class="six columns">Project1</div>
-                    <div class="six columns">Project2</div>
-                </div>
+                    <div class="row">
+                        <div class="six columns">
+                            <ul>
+                                <li>RideShare</li>
+                                <li>May 2016</li>
+                                <li>Enter details here</li>
+                            </ul>
+                        </div>
+                        <div class="six columns">
+                            <ul>
+                                <li>HomeQuest</li>
+                                <li>April 2016</li>
+                                <li>Enter details here</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="six columns">
+                            <ul>
+                                <li>RideShare</li>
+                                <li>May 2016</li>
+                                <li>Enter details here</li>
+                            </ul>
+                        </div>
+                        <div class="six columns">
+                            <ul>
+                                <li>HomeQuest</li>
+                                <li>April 2016</li>
+                                <li>Enter details here</li>
+                            </ul>
+                        </div>
+                    </div>
             </section>
-            <section id="blog"></section>
-    <!--This should contain the blog sourced from the api -->
+            <section id="blog">
+                <script id="article-template" type="text/x-handlebars-template">
+                    <ul>
+                        <li>{{title}}</li>
+                        <li>{{date_pub}}</li>
+                        <li>{{body}}</li>
+                    </ul>
+                </script>
+            </section>  
         </main>
         <footer>
             <ul id="footer-nav">
@@ -72,5 +105,7 @@
         </footer>
         <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+        <script type="js/states.js"></script>
+        <script type="js/blog_view.js"></script>
     </body>
 </html>
