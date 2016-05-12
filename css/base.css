@@ -17,10 +17,6 @@ body {
   color: #2f4f4f;
 }
 
-nav {
-  padding-bottom: 7.5%;
-}
-
 article {
   margin-bottom: 5%;
 }
@@ -46,12 +42,7 @@ a {
 }
 
 a:hover {
-  color: #0080ff;
-  /*font-weight: 700;*/
-}
-
-footer {
-  margin-top: 10%;
+  color: #62a8ef;
 }
 
 .nav-text {

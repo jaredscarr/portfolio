@@ -1,16 +1,8 @@
-/* nav bar */
-
-#nav-bar li {
-  display: inline-block;
-  padding: 2rem 3rem 3rem 2rem;
-}
-
 /*icons*/
 
 .icon {
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 2rem;
+  height: 2rem;
   fill: currentColor;
-  /*play with pushing it off the left edge in mobile view*/
 }
