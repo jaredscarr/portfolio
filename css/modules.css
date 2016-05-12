@@ -1,146 +1,103 @@
-/*Drop Down Menu*/
-.mobile-menu {
-  display:block;
-  width:100%;
-  line-height: 1.6em;
-  font-weight: 400;
-  width:100%;
+*{
+  box-sizing: border-box;
+}
+/*body{
+  height:100%;
+  background-color: #444;
+}
+h1{
+  font-size:1em;
   text-align:center;
-  position: relative;
-  margin:0 auto;
+  color: #eee;
+  letter-spacing:1px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}*/
+.nav-container{
+  width:300px;
+  margin-top:10px;
+  box-shadow: 0 2px 2px 2px #3f5f5f;
+  transition: all 0.3s linear;
+  background-color: #2f4f4f;
 }
-/*Strip the ul of padding and list styling*/
-.mobile-menu ul {
+.nav{
   list-style-type:none;
-  margin: 0 auto;
-  padding-left:0;
-  text-align:right;
-  width:100%;
-  position: absolute;
-  /*background: #8aa8bd;*/
+  margin:0;
+  padding:0;
 }
-
-/*Create a horizontal list with spacing*/
-.mobile-menu li {
-  display:inline-block;
-  position: relative;
-  /*float: left;
-  margin-right: 1px;*/
+.nav li{
+  height:50px; 
+  position:relative;
+  background: linear-gradient(#3f5f5f, #2f4f4f);
 }
-
-/*Style for menu links*/
-.mobile-menu li a {
+a {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid #3f5f5f;
+  text-decoration:none;
   display:block;
-  min-width:140px;
-  text-align: right;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff;
-  text-transform:uppercase;
-  /*background: #8aa8bd;*/
-  text-decoration: none;
-  margin-left:-20px;
-  padding: 10px 0;  
--webkit-transition: all 0.4s ease 0s;
--moz-transition: all 0.4s ease 0s;
--ms-transition: all 0.4s ease 0s;
--o-transition: all 0.4s ease 0s;
-transition: all 0.4s ease 0s;
-}
-
-/*Hover state for top level links*/
-.mobile-menu li:hover a {
-  color: #4db3ff;
-  background-color:#ccddee;
-}
-
-/*Style for dropdown links*/
-.mobile-menu li:hover ul a {
-  background: #f3f3f3;
-  color: #2f3036;
-  height: 40px;
-  line-height: 40px;
-}
-
-/*Hover state for dropdown links*/
-.mobile-menu li:hover .mobile-menu ul a:hover {
-  color: #4db3ff;
-}
-
-/*Hide dropdown links until they are needed*/
-.mobile-menu li ul {
-  display: none;
-}
-
-/*Make dropdown links vertical*/
-.mobile-menu li ul li {
-  display: block;
-  position: relative;
-  float: none;
-}
-
-/*Prevent text wrapping*/
-.mobile-menu li ul li a {
-  width: auto;
-  min-width: 100px;
-  padding: 0 20px;
-}
-
-
-/*Style 'show menu' label button and hide it by default*/
-.mobile-menu .show-menu {
-  text-decoration: none;
-  color: #fff;
-  /*background: #8aa8bd;*/
-  text-align: center;
-  padding: 10px 15px;
-  display: none;
-  cursor: pointer;
+  height:100%;
+  width:100%;
+  line-height:50px;
+  color:#bbb;
   text-transform: uppercase;
+  font-weight: bold;
+  padding-left:25%;
+  border-left:5px solid transparent;
+  letter-spacing:1px;
+  transition: all 0.3s linear;
+}
+.active a{
+  color: #81a594;
+  border-left:5px solid #81a594;
+  background-color: #2f4f4f;
+  outline:0;
+}
+li:not(.active):hover a{
+  color: #81a594;
+  border-left: 5px solid #81a594;
+  background-color: #2f4f4f;
+}
+span[class ^= "icon"]{
+  position:absolute;
+  left:20px;
+  font-size: 1.5em;
+  transition: all 0.3s linear;
 }
 
-.mobile-menu .show-menu span{
-   padding-left: 35px;
-}
-
-/*Hide checkbox*/
-.mobile-menu input[type=checkbox]{
-    display: none;
-}
-
-/*Show menu when invisible checkbox is checked*/
-.mobile-menu input[type=checkbox]:checked ~ #menu{
-    display: block;
-}
-
-/*Responsive Styles*/
-
-@media screen and (max-width : 800px){
-  .mobile-menu .lines {
-    border-bottom: 15px double #f8f8f8; 
-    border-top: 5px solid #f8f8f8; 
-    content:"";
-    height: 5px; 
-    width:20px;
-    padding-right:15px;
-    float: right;
-}
-  /*Make dropdown links appear inline*/
-  .mobile-menu ul {
-    position: static;
-    display: none;
+@media only screen and (max-width : 860px){
+  
+  .text{
+    display:none;
   }
-  /*Create vertical spacing*/
-  .mobile-menu li {
-    margin-bottom: 1px;
+  
+  .nav-container , a{
+    width: 70px;
+    
   }
-  /*Make all menu links full width*/
-  .mobile-menu ul li, .mobile-menu li a {
-    width: 100%;
+   
+  a:hover{
+    width:200px; 
+    z-index:1;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid black;
+    box-shadow: 0 0 1px 1px black;
   }
-  /*Display 'show menu' link*/
-  .mobile-menu .show-menu {
+  
+  a:hover  .text {
     display:block;
+    padding-left:30%;
   }
 }
+@media only screen and (max-width : 480px){
+  .nav-container, a{ width:50px;}
+  span[class ^= "icon"]{ left:8px;}
+}
 
+/*icons*/
 
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  /*play with pushing it off the left edge in mobile view*/
+}
