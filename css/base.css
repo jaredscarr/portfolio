@@ -53,3 +53,7 @@ a:hover {
 footer {
   margin-top: 10%;
 }
+
+.nav-text {
+  display: none;
+}
