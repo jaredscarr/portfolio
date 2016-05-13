@@ -1,5 +1,18 @@
 $(function() {
-    $('li').on('click', function() {
-        $(this).addClass('active').siblings().removeClass('active');  
-    });
+        $('#home').show();
+        $('#home-tab').on('click', function(e) {
+            e.preventDefault();
+            $('section').hide();
+            $('#home').show();
+        });
+        $('#proj-tab').on('click', function(e) {
+            e.preventDefault();
+            $('section').hide();
+            $('#projects').show();
+        });
+        $('#blog-tab').on('click', function(e) {
+            e.preventDefault();
+            $('section').hide();
+            $('#blog').show();
+        });
 });
