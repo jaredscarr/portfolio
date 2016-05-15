@@ -1,12 +1,10 @@
 html {
-  height: 120%;
   background: linear-gradient(to bottom, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=0 );
 }
 
 body {
   font-family: 'Dosis', 'Arial Narrow', Arial, sans-serif; /*have 400 and 700 weight*/
-  /*font-size: 1.4rem; /* =14px */
   color: #2f4f4f;
 }
 
