@@ -6,7 +6,24 @@
   font-size: 2rem;
 }
 
+/*columns*/
+
+.bottom_margin {
+  margin-bottom: 10%;
+}
+
+/* Home */
+
+.center {
+  padding-left: 5%;
+  padding-right: 5%;
+}
 /* footer nav */
+
+#footer-nav {
+  padding-top: 5%;
+  margin: 0;
+}
 
 footer ul {
   text-align: center;
@@ -21,7 +38,12 @@ footer ul {
 /* Mobile first queries */
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+  .center {
+    padding-left: 0%;
+    padding-right: 5%;
+  }
+}
 
 /* Larger than phablet */
 @media (min-width: 550px) {
