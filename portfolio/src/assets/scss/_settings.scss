@@ -60,9 +60,10 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
-// $body-background: $white;
-$body-background: ;
-$body-font-color: $black;
+$olive: rgba(85,107,47, 0.9);
+$body-background: $olive;
+//$body-background: $orbit-bullet-background-active;
+$body-font-color: $dark-gray;
 $body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -125,7 +126,7 @@ $header-sizes: (
     'h6': 16,
   ),
 );
-$header-color: inherit;
+$header-color: $dark-gray;
 $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 $header-text-rendering: optimizeLegibility;

@@ -1,8 +1,10 @@
 $menu-icon-size: 2rem;
-$menu-icon-color: #333;
+$menu-icon-color: #fff;
 $menu-link-height: 6.25rem;
 $menu-link-color: #fff;
 $menu-link-border: 1px solid rgba(255,255,255, .5);
+$olive: rgba(85,107,47, 0.6);
+$gray: rgba(129, 136, 140, 0.8);
 
 .toggle-menu {
   position:relative;
@@ -20,7 +22,7 @@ $menu-link-border: 1px solid rgba(255,255,255, .5);
 }
 
 .overlay-menu {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   top: 5rem;
   left: 0;
@@ -31,7 +33,7 @@ $menu-link-border: 1px solid rgba(255,255,255, .5);
   padding: 5rem 0 0;
   opacity: 0;
   list-style: none;
-  background: rgba(85,107,47, 0.5) no-repeat center center;
+  background: $olive no-repeat center center;
   background-size: cover;
   text-align: center;
   transform: translateX(-100%) rotateX(40deg);
@@ -51,7 +53,8 @@ $menu-link-border: 1px solid rgba(255,255,255, .5);
     text-decoration: none;
     
     &:hover {
-      background-color: darken(dodgerblue, 3%);
+      background-color: darken(rgba(238, 238, 238, 0.7), 3%);
+      color: $gray;
     }
   }
   
