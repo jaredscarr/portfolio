@@ -1,5 +1,10 @@
-$olive: rgba(85,107,47, 1);
+/*try variables here to store the includes? doesn't like the @include after
+background */
 
-body {
-    background-color: black;
+/*body {
+    background-color: rgba(139,170,116,1);
+    background: @include filter-gradient(#8baa74, #2a510b, vertical);
+    background: @include background-image(linear-gradient(top, rgba(139,170,116,1) 0%, rgba(42,81,11,1) 100%));
 }
+*/
+

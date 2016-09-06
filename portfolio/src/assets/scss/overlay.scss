@@ -3,7 +3,7 @@ $menu-icon-color: #fff;
 $menu-link-height: 6.25rem;
 $menu-link-color: #fff;
 $menu-link-border: 1px solid rgba(255,255,255, .5);
-$olive: rgba(85,107,47, 0.6);
+$overlay-color: rgba(85,107,47, 0.6);
 $gray: rgba(129, 136, 140, 0.8);
 
 .toggle-menu {
@@ -33,7 +33,7 @@ $gray: rgba(129, 136, 140, 0.8);
   padding: 5rem 0 0;
   opacity: 0;
   list-style: none;
-  background: $olive no-repeat center center;
+  background: $overlay-color no-repeat center center;
   background-size: cover;
   text-align: center;
   transform: translateX(-100%) rotateX(40deg);
