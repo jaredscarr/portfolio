@@ -28,3 +28,18 @@ canvas {
   z-index: 100;
   position: relative;
 }
+
+/*background image for projects*/
+#projects {
+    background-image: url(../img/backbar.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    opacity: 0.5;
+    display: none;
+}
+
+#skills {
+    display: none;
+}
+
