@@ -17,6 +17,7 @@ $('#projects-tab').on('click', function(e) {
     $("#menu").removeClass("is-open");
     $('section').hide();
     $('#particles-js').hide()
+    $('body').removeClass('toggle-grad');
     $('#projects').show();
 });
 
@@ -25,6 +26,7 @@ $('#skills-tab').on('click', function(e) {
     $("#menu").removeClass("is-open");
     $('section').hide();
     $('#particles-js').hide()
+    $('body').addClass('toggle-grad');
     $('#skills').show();
 });
 
