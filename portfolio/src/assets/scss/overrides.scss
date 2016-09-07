@@ -28,7 +28,16 @@ canvas {
   position: relative;
 }
 
-/*background image for projects*/
+/* ---- Home layout and alignment ---- */
+#home ul {
+    text-align: center;
+}
+
+#home a {
+    color: $white;
+}
+
+/* ---- background image for projects ---- */
 #projects { 
     top: 0;
     left: 0;
@@ -40,15 +49,16 @@ canvas {
     display: none;
 }
 
+.fi-eye {
+    font-size: 2rem;
+}
+
 #skills {
     display: none;
     height: 100%;
     background: linear-gradient(#606c88, #3f4c6b);
 }
 
-.fi-eye {
-    font-size: 2rem;
-}
 
 /*toggle gradient*/
 .toggle-grad {
