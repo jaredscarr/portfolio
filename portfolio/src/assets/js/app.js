@@ -8,13 +8,15 @@ $('#home-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
+    $('#particles-js').show()
     $('#home').show();
 });
 
-$('#project-tab').on('click', function(e) {
+$('#projects-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
+    $('#particles-js').hide()
     $('#projects').show();
 });
 
@@ -22,6 +24,7 @@ $('#skills-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
+    $('#particles-js').hide()
     $('#skills').show();
 });
 

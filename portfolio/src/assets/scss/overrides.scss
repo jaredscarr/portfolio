@@ -1,7 +1,7 @@
 /* ---- reset ---- */
 body { 
     margin:0;
-    font:normal 75% Arial, Helvetica, sans-serif;
+    /*font:normal 75% Arial, Helvetica, sans-serif;*/
      } 
 
 canvas {
@@ -30,16 +30,27 @@ canvas {
 }
 
 /*background image for projects*/
-#projects {
-    background-image: url(../img/backbar.jpeg);
+#projects { 
+    top: 0;
+    left: 0;
+    background-color: $body-background;
+    color: $white;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
     display: none;
 }
 
 #skills {
     display: none;
+    height: 100%;
 }
+
+.fi-eye {
+    font-size: 2rem;
+}
+
+
+
 

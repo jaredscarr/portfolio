@@ -63,7 +63,7 @@ $white: #fefefe;
 $olive: rgba(85,107,47, 0.9);
 $body-background: rgba(41, 44, 47, 1);
 //$body-background: $orbit-bullet-background-active;
-$body-font-color: $dark-gray;
+$body-font-color: $white;
 $body-font-family: 'open_sansregular', Helvetica, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -126,7 +126,7 @@ $header-sizes: (
     'h6': 16,
   ),
 );
-$header-color: $dark-gray;
+$header-color: $white;
 $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 $header-text-rendering: optimizeLegibility;
