@@ -4,7 +4,7 @@ $(".toggle-menu").on("click", function() {
 });
 
 $('#home').show();
-$('#home-tab').on('click', function(e) {
+$('.home-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
@@ -12,7 +12,7 @@ $('#home-tab').on('click', function(e) {
     $('#home').show();
 });
 
-$('#projects-tab').on('click', function(e) {
+$('.projects-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
@@ -21,7 +21,7 @@ $('#projects-tab').on('click', function(e) {
     $('#projects').show();
 });
 
-$('#skills-tab').on('click', function(e) {
+$('.skills-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
@@ -30,7 +30,7 @@ $('#skills-tab').on('click', function(e) {
     $('#skills').show();
 });
 
-$('#contact-tab').on('click', function(e) {
+$('.contact-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
 });
