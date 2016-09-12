@@ -4,10 +4,12 @@ $(".toggle-menu").on("click", function() {
 });
 
 $('#home').show();
+$('footer').hide();
 $('.home-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
+    $('footer').hide();
     $('#particles-js').show()
     $('#home').show();
 });
@@ -19,6 +21,7 @@ $('.projects-tab').on('click', function(e) {
     $('#particles-js').hide()
     $('body').removeClass('toggle-grad');
     $('#projects').show();
+    $('footer').show();
 });
 
 $('.skills-tab').on('click', function(e) {
@@ -28,10 +31,10 @@ $('.skills-tab').on('click', function(e) {
     $('#particles-js').hide()
     $('body').addClass('toggle-grad');
     $('#skills').show();
+    $('footer').show();
 });
 
 $('.contact-tab').on('click', function(e) {
-    e.preventDefault();
     $("#menu").removeClass("is-open");
 });
 

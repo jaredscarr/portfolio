@@ -29,14 +29,29 @@ canvas {
 }
 
 /* ---- Home layout and alignment ---- */
-#home ul {
+#home {
     text-align: center;
+}
+
+#home ul {
+    margin-right: auto;
+    margin-left: auto;
+    /*margin-top: 2rem;*/
 }
 
 #home a {
     color: $white;
 }
 
+/*#home p {
+    text-align: center;
+}*/
+
+#profile-pic {
+    border-radius: 50%;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    }
 /* ---- background image for projects ---- */
 #projects { 
     top: 0;
@@ -63,6 +78,10 @@ canvas {
     background: linear-gradient(#606c88, #3f4c6b);
 }
 
+#skills h1 {
+    padding-bottom: 5rem;
+    text-align: center;
+}
 
 /*toggle gradient*/
 .toggle-grad {
