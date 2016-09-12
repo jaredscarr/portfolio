@@ -4,34 +4,37 @@ $(".toggle-menu").on("click", function() {
 });
 
 $('#home').show();
-$('#home-tab').on('click', function(e) {
+$('footer').hide();
+$('.home-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
+    $('footer').hide();
     $('#particles-js').show()
     $('#home').show();
 });
 
-$('#projects-tab').on('click', function(e) {
+$('.projects-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
     $('#particles-js').hide()
     $('body').removeClass('toggle-grad');
     $('#projects').show();
+    $('footer').show();
 });
 
-$('#skills-tab').on('click', function(e) {
+$('.skills-tab').on('click', function(e) {
     e.preventDefault();
     $("#menu").removeClass("is-open");
     $('section').hide();
     $('#particles-js').hide()
     $('body').addClass('toggle-grad');
     $('#skills').show();
+    $('footer').show();
 });
 
-$('#contact-tab').on('click', function(e) {
-    e.preventDefault();
+$('.contact-tab').on('click', function(e) {
     $("#menu").removeClass("is-open");
 });
 

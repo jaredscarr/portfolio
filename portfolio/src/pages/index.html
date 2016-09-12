@@ -1,11 +1,10 @@
 <nav role="navigation">
   <ul id="menu" class="overlay-menu">
-    <li><a id="home-tab" href="#">Home</a></li>
-    <li><a id="projects-tab" href="#">Projects</a></li>
-    <li><a id="skills-tab" href="#">Skills</a></li>
-    <li><a id="contact-tab" 
-    href="mailto:jaredscarr@gmail.com?
-    Subject=Interested%20in%20working%20with%20you" target="_top">Contact</a></li>
+    <li><a class="home-tab" href="#">Home</a></li>
+    <li><a class="projects-tab" href="#">Projects</a></li>
+    <li><a class="skills-tab" href="#">Skills</a></li>
+    <li><a class="contact-tab" 
+    href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top">Contact</a></li>
   </ul>
   <a class="toggle-menu" href="#menu"><i class="menu-icon"></i></a>
 </nav>
@@ -19,8 +18,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="small-2 small-centered columns">
-      <!-- <img id="profile-pic" src="assets/img/profilepic.jpg"> -->
+    <div class="small-4 small-centered columns">
+      <img id="profile-pic" src="assets/img/profilepic-circle.png">
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-4 small-centered columns">
+      <ul class="inline-list social">
+        <a href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top"<i class="fi-mail"></i></a>
+        <a href="https://www.facebook.com/jared.scarr" target="_blank"><i class="fi-social-facebook"></i></a>
+        <a href="http://linkedin.com/in/jaredscarr
+" target="_blank"><i class="fi-social-linkedin"></i></a>
+        <a href="https://github.com/jaredscarr" target="_blank"><i class="fi-social-github"></i></a>
+      </ul>
     </div>
   </div>
 </section>
@@ -47,9 +57,12 @@
     <div class="service">
       <div class="service-icon-box">
         <div class="fi-eye"></div>
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/SpaceX_CRS-3.png/360px-SpaceX_CRS-3.png" alt="" class="service-icon"> -->
       </div>
-      <h4 class="service-heading">Interstellar Travel</h4>
-      <p class="service-description">It has been a very busy few months for the Project Voyager team. But the fruits of labor are finally starting to pay off. We have officially succeed at creating orbital insertions within an accuracy of 1km.</p>
+      <h4 class="service-heading">This Portfolio</h4>
+      <p class="service-description">A single page app developed with the Foundation 
+      framework.</p>
+      <a class="service-description" href="https://github.com/jaredscarr/portfolio" target="_blank"><i class="fi-social-github"></i></a>
       </div>
     </div>
   </div>
@@ -59,22 +72,11 @@
     <div class="service">
       <div class="service-icon-box">
         <div class="fi-eye"></div>
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/SpaceX_CRS-3.png/360px-SpaceX_CRS-3.png" alt="" class="service-icon"> -->
       </div>
       <h4 class="service-heading">RideShare</h4>
-      <p class="service-description">It has been a very busy few months for the Project Voyager team. But the fruits of labor are finally starting to pay off. We have officially succeed at creating orbital insertions within an accuracy of 1km.</p>
-      <a class="service-description" href="https://github.com/RideQuest/rideshare-backend" target="_blank"><i class="fi-social-github"></i></a>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-  <div class="small-6 small-centered columns">
-    
-    <div class="service">
-      <div class="service-icon-box">
-        <div class="fi-eye"></div>
-      </div>
-      <h4 class="service-heading">Portfolio</h4>
-      <p class="service-description">It has been a very busy few months for the Project Voyager team. But the fruits of labor are finally starting to pay off. We have officially succeed at creating orbital insertions within an accuracy of 1km.</p>
+      <p class="service-description">Connects users to carshare opportunities heading to Code Fellows within a mile radius of their location.</p>
+      <a class="service-description" href="http://rideshare-app.s3-website-us-west-2.amazonaws.com/#/" target="_blank"><i class="fi-link"></i></a>
       </div>
     </div>
   </div>
@@ -83,7 +85,8 @@
   <div class="row">
     <div class="small-6 small-centered columns">
       <h1>SKILLS</h1>
-      <p>Python, Django, Pyramid, JavaScript, CSS, HTML, Foundation.</p>
+      <p>Most of my projects have been RESTful API's built utilizing Python with the Django and Pyramid frameworks in concert with Postgresql. Automated deployment with Ansible and hosting on Amazon Web Services and Heroku. Front-end work is done in HTML, CSS and JavaScript with the Foundation framework. I'm available for freelance projects so please reach out.</p>
+      <div class="center"><a href="#" id="projects-button" class="button projects-tab">PROJECTS</a></div>
     </div>
   </div>
 </section>
@@ -91,9 +94,9 @@
   <div class="row">
     <div class="small-12 medium-6 large-5 columns"> 
       <p class="footer-links">
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">Skills</a>
+        <a class="home-tab" href="#">Home</a>
+        <a class="projects-tab" href="#">Projects</a>
+        <a class="skills-tab" href="#">Skills</a>
         <a href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top">Contact</a>
       </p>
       <p class="copywrite">Copyright © 2016</p>
@@ -101,9 +104,10 @@
     <div class="small-12 medium-12 large-3 columns">
       <ul class="inline-list social">
         <a href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top"<i class="fi-mail"></i></a>
-        <a href="#"><i class="fi-social-facebook"></i></a>
-        <a href="#"><i class="fi-social-linkedin"></i></a>
-        <a href="#"><i class="fi-social-github"></i></a>
+        <a href="https://www.facebook.com/jared.scarr" target="_blank"><i class="fi-social-facebook"></i></a>
+        <a href="http://linkedin.com/in/jaredscarr
+" target="_blank"><i class="fi-social-linkedin"></i></a>
+        <a href="https://github.com/jaredscarr" target="_blank"><i class="fi-social-github"></i></a>
       </ul>
     </div>
   </div>

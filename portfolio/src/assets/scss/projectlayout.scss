@@ -35,6 +35,14 @@
     -ms-transform: scale(0);
     transform: scale(0);
   }
+
+  a.service-description {
+    color: $white;
+  }
+
+  .fi-social-github {
+    font-size: 1.5rem;
+  }
   
   .service-icon-box > img.service-icon {
       width: 40px;
