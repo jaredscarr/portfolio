@@ -1,6 +1,5 @@
 body { 
-    margin:0;
-    /*font:normal 75% Arial, Helvetica, sans-serif;*/
+    margin:0;   
      } 
 
 canvas {
@@ -11,7 +10,7 @@ canvas {
 /* ---- particles.js container ---- */
 
 #particles-js { 
-    position:absolute; 
+    position: absolute; 
     width: 100%; 
     height: 100%; 
     background-color: rgba(41, 44, 47, 1); 
@@ -19,7 +18,7 @@ canvas {
     background-repeat: no-repeat; 
     background-size: cover; 
     background-position: 50% 50%;
-    top: 0;
+    // top: 0;
     left: 0;
     } 
 
@@ -33,10 +32,6 @@ canvas {
     text-align: center;
 }
 
-#home h1 {
-    margin-bottom: 2rem;
-}
-
 #home ul {
     margin-right: auto;
     margin-left: auto;
@@ -45,16 +40,17 @@ canvas {
 
 #home a {
     color: $white;
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
-
-/*#home p {
-    text-align: center;
-}*/
 
 #profile-pic {
     border-radius: 50%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     }
+
 /* ---- background image for projects ---- */
 #projects { 
     top: 0;
@@ -82,7 +78,8 @@ canvas {
 }
 
 #skills h1 {
-    padding-bottom: 1rem;
+    margin-top: 8rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -98,8 +95,3 @@ canvas {
 .toggle-grad {
         background: linear-gradient(#606c88, #3f4c6b);
     }
-
-#projects-button {
-    background-color: transparent;
-    border: solid 0.2rem;
-}
