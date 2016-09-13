@@ -99,6 +99,33 @@ canvas {
     text-align: center;
 }
 
+/* contact form*/
+
+#contact {
+    display: none;
+    height: 100%;
+    background: linear-gradient(#606c88, #3f4c6b);
+}
+
+#contact-form {
+    margin-top: 5rem;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+#message-input {
+    min-height: 10rem;
+}
+
+#button-wrapper {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+#submit-button {
+    background-color: rgb(118, 207, 242);
+}
+
 /*toggle gradient*/
 .toggle-grad {
         background: linear-gradient(#606c88, #3f4c6b);

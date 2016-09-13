@@ -3,8 +3,7 @@
     <li><a class="home-tab" href="#">Home</a></li>
     <li><a class="projects-tab" href="#">Projects</a></li>
     <li><a class="skills-tab" href="#">Skills</a></li>
-    <li><a class="contact-tab" 
-    href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top">Contact</a></li>
+    <li><a class="contact-tab" href="#">Contact</a></li>
   </ul>
 </nav>
 <div id="particles-js"></div>
@@ -84,6 +83,56 @@
       <p>Most of my projects have been RESTful API's built utilizing Python with the Django and Pyramid frameworks in concert with Postgresql. Automated deployment with Ansible and hosting on Amazon Web Services and Heroku. Front-end work is done in HTML, CSS and JavaScript with the Foundation framework. I'm available for freelance projects so please reach out.</p>
     </div>
 </section>
+<section id="contact">
+  <div class="row">
+    <form id="contact-form">
+    <div class="small-3 columns">
+      <label for="middle-label" class="text-right middle">Name:</label>
+    </div>
+    <div class="small-6 columns">
+      <input type="text" placeholder="Name" required="required">
+    </div>
+    <div class="small-3 columns"></div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="middle-label" class="text-right middle">Email:</label>
+    </div>
+    <div class="small-6 columns">
+      <input type="text" placeholder="someone@someplace.com" required="required">
+    </div>
+    <div class="small-3 columns"></div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="middle-label" class="text-right middle">Subject:</label>
+    </div>
+    <div class="small-6 columns">
+      <input type="text" placeholder="Interested in working with you" required="required">
+    </div>
+    <div class="small-3 columns"></div>
+  </div>
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="middle-label" class="text-right middle">Message:</label>
+    </div>
+    <div class="small-6 columns">
+      <textarea id="message-input" required="required"></textarea>
+    </div>
+    <div class="small-3 columns"></div>
+  </div>
+  <div class="row">
+    <div class="small-1 columns"></div>
+    <div class="small-5 small-offset-7 columns">All fields are required.</div>
+  </div>
+  <div class="row">
+    <div class="small-1 columns"></div>
+    <div class="small-8 small-offset-1 columns" id="button-wrapper">
+      <button type="submit" class="button" id="submit-button">Submit</button>
+    </div>
+  </div>
+</form>
+</section>
 <footer class="footer">
   <div class="row">
     <div class="small-12 medium-6 large-5 columns"> 
@@ -91,7 +140,7 @@
         <a class="home-tab" href="#home">Home</a>
         <a class="projects-tab" href="#projects">Projects</a>
         <a class="skills-tab" href="#skills">Skills</a>
-        <a href="mailto:jaredscarr@gmail.com?Subject=Interested%20in%20working%20with%20you" target="_top">Contact</a>
+        <a class="contact-tab" href="#">Contact</a>
       </p>
       <p class="copywrite">Copyright © 2016</p>
     </div>
