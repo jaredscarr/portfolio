@@ -87,16 +87,27 @@ canvas {
     display: none;
     height: 100%;
     background: linear-gradient(#606c88, #3f4c6b);
+    text-align: center;
 }
 
-#skills h1 {
-    margin-top: 8rem;
-    margin-bottom: 2rem;
-    text-align: center;
+#skills h3 {
+    margin-top: 2rem;
+    letter-spacing: 0.7rem;
+}
+
+#skills ul {
+    list-style-type: none;
+    margin-bottom: 3rem;
+}
+
+#skills li {
+    margin-top: 0.5rem;
+    letter-spacing: 0.3rem;
+
 }
 
 #skills p {
-    text-align: center;
+    margin-top: 2rem;
 }
 
 .center {
@@ -118,7 +129,7 @@ canvas {
 }
 
 #message-input {
-    min-height: 10rem;
+    min-height: 8rem;
 }
 
 #button-wrapper {
