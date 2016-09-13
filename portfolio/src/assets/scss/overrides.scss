@@ -71,6 +71,10 @@ canvas {
     display: none;
 }
 
+#projects p {
+    color: black;
+}
+
 .fi-eye {
     font-size: 2rem;
 }
@@ -129,4 +133,4 @@ canvas {
 /*toggle gradient*/
 .toggle-grad {
         background: linear-gradient(#606c88, #3f4c6b);
-    }
+}
