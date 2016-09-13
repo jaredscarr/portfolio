@@ -43,4 +43,27 @@
       } 
     }
 
+/* ---- background image for projects ---- */
+#projects { 
+    top: 0;
+    left: 0;
+    background-color: $body-background;
+    color: $white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: none;
+}
+
+#projects p {
+    color: black;
+}
+
+.fi-eye {
+    font-size: 2rem;
+}
+
+.fi-link {
+    font-size: 1.5rem;
+}
 
