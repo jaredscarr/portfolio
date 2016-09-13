@@ -32,12 +32,13 @@ canvas {
     text-align: center;
 }
 
-.raleway {
-    font-family: 'Raleway', sans-serif;
+#my-name {
+    font-weight: bold;
+    letter-spacing: 0.7rem;
 }
-
 #position {
     margin-bottom: 2rem;
+    letter-spacing: 0.5rem;
 }
 
 #home ul {
