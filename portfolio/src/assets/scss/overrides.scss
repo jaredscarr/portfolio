@@ -63,32 +63,24 @@ canvas {
     display: none;
     height: 100%;
     background: linear-gradient(#606c88, #3f4c6b);
-    text-align: center;
+    text-align:center;
 }
 
-#skills h3 {
-    margin-top: 4rem;
-    letter-spacing: 0.7rem;
-}
-
-#skills ul {
-    list-style-type: none;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
 
 #skills li {
-    margin-top: 0.5rem;
-    letter-spacing: 0.3rem;
-
-}
-
-#skills p {
-    margin-top: 2rem;
-}
-
-.center {
     text-align: center;
+    list-style-type: none;
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+
+.skills-wrapper {
+    padding-top: 10rem;
+}
+
+.my-logo {
+    font-size: 3rem;
+    margin-top: 3rem;
 }
 
 /* contact form*/
@@ -121,4 +113,20 @@ canvas {
 /*toggle gradient*/
 .toggle-grad {
         background: linear-gradient(#606c88, #3f4c6b);
+}
+
+// Small screens
+@media only screen and (max-width: 40em) {
+    .my-logo {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .skills-wrapper {
+        padding-top: 3rem;
+    }
 }
