@@ -23,14 +23,6 @@ $('.projects-tab').on('click', function(e) {
     $('footer').show();
 });
 
-$('.skills-tab').on('click', function(e) {
-    e.preventDefault();
-    $('section').hide();
-    $('#particles-js').hide();
-    $('#skills').show();
-    $('footer').show();
-});
-
 $('.contact-tab').on('click', function(e) {
     e.preventDefault();
     $('section').hide();
