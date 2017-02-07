@@ -1,0 +1,30 @@
+{
+    "title":"GMB Fitness",
+    "body-1":"Wistia to Vimeo.",
+    "body-2": "Using Python to automate the migration of over a thousand videos and their associated data to Vimeo cloud storage.",
+    "github-link": "https://gmb.io/",
+    "link-icon": "https://github.com/jaredscarr/wistia_to_vimeo"
+},
+{
+    "title": "RideShare",
+    "body-1": "Carpool to Code Fellows.",
+    "body-2": "Built on the Django Rest Framework and Angular. Automated deployment with Ansible.",
+    "github-link": "https://github.com/RideQuest/rideshare-backend",
+    "link-icon": "http://rideshare-app.s3-website-us-west-2.amazonaws.com/#/"
+},
+{
+    "title":"JAREDSCARR.COM",
+    "body-1":"My portfolio.",
+    "body-2": "Designed with the Foundation 6 framework. Deployed on
+          AWS using S3, CloudFront and Route53.",
+    "github-link":"https://github.com/jaredscarr/portfolio",
+    "link-icon": "http://jaredscarr.com"
+},
+{
+    "title":"NoteFellows",
+    "body-1":"A simple note taking application.",
+    "body-2": "",
+    "github-link":"https://github.com/jaredscarr/portfolio",
+    "link-icon": "http://jaredscarr.com"
+},
+
