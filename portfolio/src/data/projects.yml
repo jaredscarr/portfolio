@@ -26,3 +26,10 @@ Note Fellows: {
                 github-link: https://github.com/clee46/note-fellows,
                 link: https://clee46.github.io/note-fellows/
             }
+Bar Track: {
+                title: Bar Track,
+                body-1: API for inventory and costing cocktails,
+                body-2: Built with the Pyramid framework in Python,
+                github-link: https://github.com/jaredscarr/bartrack,
+                link: https://github.com/jaredscarr/bartrack
+}
