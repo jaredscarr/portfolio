@@ -2,7 +2,7 @@
   <ul class="inline-list">
     <li><a class="home-tab" href="#">Home</a></li>
     <li><a class="projects-tab" href="#">Projects</a></li>
-    <li><a href="assets/img/Scarr_Jared_Resume.pdf" target="_blank">Resume</a></li>
+    <li><a href="assets/img/portfolio-resume.pdf" target="_blank">Resume</a></li>
     <li><a class="contact-tab" href="#">Contact</a></li>
   </ul>
 </nav>
@@ -35,49 +35,23 @@
 </section>
 <section id="projects">
   <div class="row">
+    {{#each projects}}
     <div class="medium-4 columns">
       <div class="profile-card">
         <div class="profile-info">
-          <h4 class="subheader">GMB Fitness</h4>
-          <p>Wistia to Vimeo.</p>
-          <p>Using Python to automate the migration of over a thousand videos and their associated data to Vimeo cloud storage.</p>
+          <h4 class="subheader">{{ this.title }}</h4>
+          <p>{{ this.body-1 }}</p>
+          <p>{{ this.body-2 }}</p>
           <ul class="inline-list">
-            <li><a class="fi-social-github" href="https://github.com/jaredscarr/wistia_to_vimeo"></a></li>
+            <li><a class="fi-social-github" href={{ this.github-link }}></a></li>
             <li><p> | </p></li>
-            <li><a class="fi-link" href="https://gmb.io/"></a></li>
+            <li><a class="fi-link" href={{ this.link }}></a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="medium-4 columns">
-      <div class="profile-card">
-        <div class="profile-info">
-          <h4 class="subheader">RideShare</h4>
-          <p>Carpool to Code Fellows.</p>
-          <p>Built on the Django Rest Framework and Angular. Automated deployment with Ansible.</p>
-          <ul class="inline-list">
-            <li><a class="fi-social-github" href="https://github.com/RideQuest/rideshare-backend"></a></li>
-            <li><p> | </p></li>
-            <li><a class="fi-link" href="http://rideshare-app.s3-website-us-west-2.amazonaws.com/#/"></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="medium-4 columns">
-      <div class="profile-card">
-        <div class="profile-info">
-          <h4 class="subheader">JAREDSCARR.COM</h4>
-          <p>My portfolio.</p>
-          <p>Designed with the Foundation 6 framework. Deployed on
-          AWS using S3, CloudFront and Route53.</p>
-          <ul class="inline-list">
-            <li><a class="fi-social-github" href="https://github.com/jaredscarr/portfolio"></a></li>
-            <li><p> | </p></li>
-            <li><a class="fi-link" href="http://jaredscarr.com"></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {{/each}}
+  </div>
 </section>  
     </div>
   </div>
@@ -138,7 +112,7 @@
       <p class="footer-links">
         <a class="home-tab" href="#home">Home</a>
         <a class="projects-tab" href="#projects">Projects</a>
-        <a href="assets/img/Scarr_Jared_Resume.pdf" target="_blank">Resume</a>
+        <a href="assets/img/portfolio-resume.pdf" target="_blank">Resume</a>
         <a class="contact-tab" href="#">Contact</a>
       </p>
       <p class="copywrite">Copyright © 2016</p>
