@@ -1,11 +1,4 @@
-<nav class="menu">
-  <ul class="inline-list">
-    <li><a class="home-tab" href="#">Home</a></li>
-    <li><a class="projects-tab" href="#">Projects</a></li>
-    <li><a href="assets/img/portfolio-resume.pdf" target="_blank">Resume</a></li>
-    <li><a class="contact-tab" href="#">Contact</a></li>
-  </ul>
-</nav>
+<nav class="menu"></nav>
 <div id="particles-js"></div>
 <section id="home" class="is-loading">
   <div class="row">
@@ -17,15 +10,12 @@
     <div class="small-6 small-centered columns">
       <h2 id="my-name">JARED SCARR</h2>
       <h4 id="position">DEVELOPER</h4>
-      <p>Hello! I am a developer based in Seattle, WA.
-         My skills range from front end design with HTML, CSS and JavaScript to
-         back-end RESTful API creation in Python using the Django and Pyramid frameworks. I'm available for freelance projects so please reach out.</p>
+      <p>Hello! I am a full stack Developer and Customer Success Engineer based in Seattle, WA.</p>
     </div>
   </div>
   <div class="row">
     <div class="small-4 small-centered columns">
       <ul class="inline-list social">
-        <a href="#" target="_top"<i class="fi-mail contact-tab"></i></a>
         <a href="http://linkedin.com/in/jaredscarr
 " target="_blank"><i class="fi-social-linkedin"></i></a>
         <a href="https://github.com/jaredscarr" target="_blank"><i class="fi-social-github"></i></a>
@@ -33,98 +23,4 @@
     </div>
   </div>
 </section>
-<section id="projects">
-  <div class="row">
-    {{#each projects}}
-    <div class="medium-4 columns">
-      <div class="profile-card">
-        <div class="profile-info">
-          <h4 class="subheader">{{ this.title }}</h4>
-          <p>{{ this.body-1 }}</p>
-          <p>{{ this.body-2 }}</p>
-          <ul class="inline-list">
-            <li><a class="fi-social-github" href={{ this.github-link }}></a></li>
-            <li><p> | </p></li>
-            <li><a class="fi-link" href={{ this.link }}></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-</section>  
-    </div>
-  </div>
-</section>
-<section id="contact">
-  <div class="row">
-    <form id="contact-form" method="POST" action="https://formspree.io/jaredscarr@gmail.com">
-    <div class="small-3 columns">
-      <label for="middle-label" class="text-right middle">Name:</label>
-    </div>
-    <div class="small-6 columns">
-      <input type="text" placeholder="Name" name="name" required="required">
-    </div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <label for="middle-label" class="text-right middle">Email:</label>
-    </div>
-    <div class="small-6 columns">
-      <input type="email" placeholder="someone@someplace.com" name="email" required="required">
-    </div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <label for="middle-label" class="text-right middle">Subject:</label>
-    </div>
-    <div class="small-6 columns">
-      <input type="text" placeholder="Interested in working with you" name="subject" required="required">
-    </div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <label for="middle-label" class="text-right middle">Message:</label>
-    </div>
-    <div class="small-6 columns">
-      <textarea id="message-input" name="message" required="required"></textarea>
-    </div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class="row">
-    <div class="small-1 columns"></div>
-    <div class="small-5 small-offset-7 columns">All fields are required.</div>
-  </div>
-  <div class="row">
-    <div class="small-1 columns"></div>
-    <div class="small-8 small-offset-1 columns" id="button-wrapper">
-      <button type="submit" class="button" id="submit-button">Submit</button>
-    </div>
-  </div>
-</form>
-</section>
-<footer class="footer">
-  <div class="row">
-    <div class="small-12 medium-6 large-5 columns"> 
-      <p class="footer-links">
-        <a class="home-tab" href="#home">Home</a>
-        <a class="projects-tab" href="#projects">Projects</a>
-        <a href="assets/img/portfolio-resume.pdf" target="_blank">Resume</a>
-        <a class="contact-tab" href="#">Contact</a>
-      </p>
-      <p class="copywrite">Copyright © 2016</p>
-    </div>
-    <div class="small-12 medium-12 large-3 columns">
-      <ul class="inline-list social">
-        <a class="contact-tab" href="#"><i class="fi-mail"></i></a>
-        <a href="http://linkedin.com/in/jaredscarr
-" target="_blank"><i class="fi-social-linkedin"></i></a>
-        <a href="https://github.com/jaredscarr" target="_blank"><i class="fi-social-github"></i></a>
-      </ul>
-    </div>
-  </div>
-</footer>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
