@@ -1,3 +1,3 @@
 # jaredscarr.com
 
-http://www.jaredscarr.com
+https://www.jaredscarr.com
