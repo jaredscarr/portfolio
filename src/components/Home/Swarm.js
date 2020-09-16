@@ -45,7 +45,7 @@ const Swarm = ({ count, mouse }) => {
   return (
     <instancedMesh ref={mesh} args={[null, null, count]}>
       <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} />
-      <meshPhongMaterial attach="material" color="black" />
+      <meshPhongMaterial attach="material" color={0x0f0e0a} />
     </instancedMesh>
   )
 }
