@@ -146,12 +146,12 @@ export default function Experiments() {
                     color="inherit"
                     variant="inherit"
                     className={classes.link}
-                    href="https://www.codepen.io/jaredscarr"
+                    href="https://codesandbox.io/u/jaredscarr"
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Button variant="outlined" color="primary">
-                      More on Codepen
+                      More
                     </Button>
                   </Link>
                 </Grid>
