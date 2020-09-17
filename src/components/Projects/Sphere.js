@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import * as THREE from 'three';
 import '../../App.css';
 import { Canvas } from 'react-three-fiber'
 import { makeStyles } from '@material-ui/core/styles'
-import Camera from './Camera'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,7 +40,7 @@ const Light = ({ brightness, color }) => {
   );
 }
 
-function FillLight({ brightness, color }) {
+const FillLight = ({ brightness, color }) => {
   return (
     <rectAreaLight
       width={3}
@@ -55,7 +54,8 @@ function FillLight({ brightness, color }) {
     />
   );
 }
-function RimLight({ brightness, color }) {
+
+const RimLight = ({ brightness, color }) => {
   return (
     <rectAreaLight
       width={2}
