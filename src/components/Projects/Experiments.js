@@ -1,18 +1,18 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Link from '@material-ui/core/Link'
 import {
   Link as RouterLink
-} from "react-router-dom";
+} from "react-router-dom"
 import terrain from './static/terrain.png'
 import horizon from './static/horizon.png'
 import sphere from './static/sphere.png'
@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
+  heroTitle: {
+    letterSpacing: theme.spacing(1),
+    fontWeight: 'bold',
+    paddingBottom: theme.spacing(3),
+  },
   heroButtons: {
     marginTop: theme.spacing(4),
   },
@@ -62,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    paddingBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(2),
   },
 }));
 
@@ -100,8 +105,8 @@ export default function Experiments() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
-              Experiments
+            <Typography className={classes.heroTitle} component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
+              EXPERIMENTS
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
               Here are some fun things that I've done while learning about WebGl, Three.js, Blender, React and other tools. 
