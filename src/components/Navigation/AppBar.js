@@ -15,6 +15,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  link: {
+    marginRight: theme.spacing(2),
+    fontWieght: 'bold',
+    letterSpacing: theme.spacing(0.4),
+    color: 'grey',
+    '&:hover': {
+      color: 'white',
+    },
+  },
 }));
 
 export default function ButtonAppBar() {
