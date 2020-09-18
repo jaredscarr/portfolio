@@ -1,36 +1,48 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Link from '@material-ui/core/Link'
 import Code from '@material-ui/icons/Code'
 import GitHub from '@material-ui/icons/GitHub'
 import LinkedIn from '@material-ui/icons/LinkedIn'
-import Link from '@material-ui/core/Link'
-import Paper from '@material-ui/core/Paper'
+
+//TODO: check this link in the copyright section and see if it works or needs adjustment. Maybe remove.
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        jaredscarr.com
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
   },
-  paper: {
-    marginTop: theme.spacing(20),
-    padding: theme.spacing(12),
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
   },
-  email: {
-    fontWeight: 'italic',
-    paddingTop: theme.spacing(2),
+  heroSubtitle: {
+    marginTop: theme.spacing(10),
     letterSpacing: theme.spacing(0.8),
   },
-  spacing: {
-    paddingTop: theme.spacing(2),
+  linkPosition: {
+    marginTop: theme.spacing(5),
   },
   link: {
     margin: theme.spacing(2),
-    textDecoration: 'none',
-    '&:hover': {
-      color: 'grey',
-    },
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    paddingBottom: theme.spacing(2),
   },
 }));
 
@@ -38,15 +50,16 @@ export default function Experiments() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
       <main className={classes.root}>
-        <Container maxWidth="sm">
-          <Paper elevation={3} className={classes.paper}>
-            <Typography className={classes.email} component="h3" variant="h5" align="center" color="textPrimary" gutterBottom>
+        {/* Hero unit */}
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography className={classes.heroSubtitle} variant="h6" align="center" color="textSecondary" paragraph>
               jaredscarr@gmail.com
             </Typography>
-            <Typography className={classes.spacing} align="center" color="textPrimary" gutterBottom>
+            <Typography className={classes.linkPosition} align="center">
               <Link
                 color="inherit"
                 variant="inherit"
@@ -59,7 +72,7 @@ export default function Experiments() {
               </Link>
               <Link
                 color="inherit"
-                variant="inherit"
+                variant="inherit" 
                 className={classes.link}
                 href="https://codesandbox.io/u/jaredscarr"
                 target="_blank"
@@ -78,9 +91,14 @@ export default function Experiments() {
                 <GitHub />
               </Link>
             </Typography>
-          </Paper>
-        </Container>
+          </Container>
+        </div>
       </main>
-    </React.Fragment>
+      {/* Footer */}
+      <footer className={classes.footer}>
+        <Copyright />
+      </footer>
+      {/* End footer */}
+    </Fragment>
   );
 }
