@@ -1,10 +1,11 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, Fragment } from 'react'
 import * as THREE from 'three';
 import '../../App.css';
 import { Canvas, Dom, useResource, useUpdate } from 'react-three-fiber'
 import { makeStyles } from '@material-ui/core/styles'
 import Camera from './Camera'
 import { noise } from './Helpers/perlin'
+import ProjectNavBar from '../Navigation/ProjectNavBar'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -13,7 +14,12 @@ const useStyles = makeStyles((theme) => ({
   loading: {
     padding: theme.spacing(2),
     transform: 'translate3d(-50%, -50%, 0)',
-  }
+  },
+  overlay: {
+    position: 'absolute',
+    zIndex: 1,
+    margin: theme.spacing(3),
+  },
 }));
 
 const Lights = () => {
@@ -86,23 +92,28 @@ const Scene = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      <Canvas
-        gl={{ alpha: false, antialias: false, logarithmicDepthBuffer: true }}
-        camera={{ zoom: 40, position: [0, 0, 500] }}
-        onCreated={({ gl }) => {
-          gl.setClearColor(0x070712)
-          gl.toneMapping = THREE.ACESFilmicToneMapping
-          gl.outputEncoding = THREE.sRGBEncoding
-        }}
-      >
-        <Suspense fallback={<Dom center className="loading" children="Loading..." />}>
-          <Camera enableZoom={false} autoRotate={true}/>
-          <Lights />
-          <Terrain />
-        </Suspense>
-      </Canvas>
-    </div>
+    <Fragment>
+      <div className={classes.overlay}>
+        <ProjectNavBar />
+      </div>
+      <div className={classes.container}>
+        <Canvas
+          gl={{ alpha: false, antialias: false, logarithmicDepthBuffer: true }}
+          camera={{ zoom: 40, position: [0, 0, 500] }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x070712)
+            gl.toneMapping = THREE.ACESFilmicToneMapping
+            gl.outputEncoding = THREE.sRGBEncoding
+          }}
+        >
+          <Suspense fallback={<Dom center className="loading" children="Loading..." />}>
+            <Camera enableZoom={false} autoRotate={true}/>
+            <Lights />
+            <Terrain />
+          </Suspense>
+        </Canvas>
+      </div>
+    </Fragment>
   );
 }
 

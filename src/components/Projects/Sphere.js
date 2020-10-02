@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import * as THREE from 'three';
 import '../../App.css';
 import { Canvas } from 'react-three-fiber'
 import { makeStyles } from '@material-ui/core/styles'
+import ProjectNavBar from '../Navigation/ProjectNavBar'
 
 const useStyles = makeStyles((theme) => ({
   container: {
     height: '100vh',
+  },
+  overlay: {
+    position: 'absolute',
+    zIndex: 1,
+    margin: theme.spacing(3),
   },
 }));
 
@@ -92,22 +98,27 @@ const Scene = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      <Canvas
-        onCreated={({ gl }) => {
-          gl.setClearColor(0x070712)
-          gl.toneMapping = THREE.ACESFilmicToneMapping
-          gl.outputEncoding = THREE.sRGBEncoding
-        }}
-      >
-        <Light />
-        <FillLight />
-        <RimLight />
-        <Sphere />
-        <BackDrop />
-        <GroundPlane />
-      </Canvas>
-    </div>
+    <Fragment>
+      <div className={classes.overlay}>
+        <ProjectNavBar url={"/terrain"} />
+      </div>
+      <div className={classes.container}>
+        <Canvas
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x070712)
+            gl.toneMapping = THREE.ACESFilmicToneMapping
+            gl.outputEncoding = THREE.sRGBEncoding
+          }}
+        >
+          <Light />
+          <FillLight />
+          <RimLight />
+          <Sphere />
+          <BackDrop />
+          <GroundPlane />
+        </Canvas>
+      </div>
+    </Fragment>
   );
 }
 

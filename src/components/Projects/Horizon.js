@@ -1,12 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useRef, Fragment } from 'react'
 import * as THREE from 'three'
 import '../../App.css'
 import { Canvas, useFrame } from 'react-three-fiber'
 import { makeStyles } from '@material-ui/core/styles'
+import ProjectNavBar from '../Navigation/ProjectNavBar'
 
 const useStyles = makeStyles((theme) => ({
   container: {
     height: '100vh',
+  },
+  overlay: {
+    position: 'absolute',
+    zIndex: 1,
+    margin: theme.spacing(3),
   },
 }));
 
@@ -33,7 +39,6 @@ const TopLight = ({ brightness, color }) => {
   );
 }
 
-// A Constant to store the ground height of the game.
 const GROUND_HEIGHT = -20;
 
 const MovingGround = () => {
@@ -90,25 +95,30 @@ const Scene = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      <Canvas
-        onCreated={({ gl, camera }) => {
-          gl.setClearColor(0x070712)
-          gl.toneMapping = THREE.ACESFilmicToneMapping
-          gl.outputEncoding = THREE.sRGBEncoding
-          camera.rotation.x = 0.01
-          camera.rotation.x = 0.01
-          camera.rotation.z = -1.45
-          camera.position.x = 6
-          camera.position.z = 15
-        }}
-      >
-        <TopLight />
-        <pointLight position={[10, 10, 100]} /> 
-        <MainObject />
-        <MovingGround />
-      </Canvas>
-    </div>
+    <Fragment>
+      <div className={classes.overlay}>
+        <ProjectNavBar url={"/sphere"} />
+      </div>
+      <div className={classes.container}>
+        <Canvas
+          onCreated={({ gl, camera }) => {
+            gl.setClearColor(0x070712)
+            gl.toneMapping = THREE.ACESFilmicToneMapping
+            gl.outputEncoding = THREE.sRGBEncoding
+            camera.rotation.x = 0.01
+            camera.rotation.x = 0.01
+            camera.rotation.z = -1.45
+            camera.position.x = 6
+            camera.position.z = 15
+          }}
+        >
+          <TopLight />
+          <pointLight position={[10, 10, 100]} /> 
+          <MainObject />
+          <MovingGround />
+        </Canvas>
+      </div>
+    </Fragment>
   );
 }
 
