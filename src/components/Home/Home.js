@@ -125,7 +125,7 @@ const Home = () => {
             jaredscarr.com
           </Typography>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.9} speed={-1}>
+        <ParallaxLayer offset={0.8} speed={-1}>
           <footer className={classes.footer}>
             <Copyright />
           </footer>
