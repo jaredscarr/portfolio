@@ -16,39 +16,11 @@ import {
 import terrain from './static/terrain.png'
 import horizon from './static/horizon.png'
 import sphere from './static/sphere.png'
-
-//TODO: check this link in the copyright section and see if it works or needs adjustment. Maybe remove.
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        jaredscarr.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import swarm from './static/swarm.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
-  },
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroTitle: {
-    letterSpacing: theme.spacing(1),
-    fontWeight: 'bold',
-    paddingBottom: theme.spacing(3),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -65,13 +37,16 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    paddingBottom: theme.spacing(2),
-  },
 }));
 
 const experiments = [
+  {
+    title: "Float",
+    image: swarm,
+    heading: "Float",
+    content: "Sprite objects with movement triggered by mouse movement",
+    link: "/floatswarm"
+  },
   {
     title: "Moving Ground",
     image: horizon,
@@ -95,26 +70,14 @@ const experiments = [
   },
 ]
 
-export default function Experiments() {
+const Experiments = () => {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <main className={classes.root}>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography className={classes.heroTitle} component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
-              EXPERIMENTS
-            </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              Here are some fun things that I've done while learning about WebGl, Three.js, Blender, React and other tools. 
-            </Typography>
-          </Container>
-        </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {experiments.map((exp) => (
               <Grid item key={exp.link} xs={12} sm={6} md={4}>
@@ -133,8 +96,8 @@ export default function Experiments() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link component={RouterLink} to={exp.link}>
-                      <Typography>View</Typography>
+                    <Link className={classes.link} component={RouterLink} to={exp.link} underline="none">
+                      <Typography className={classes.link} variant="subtitle2">View</Typography>
                     </Link>
                   </CardActions>
                 </Card>
@@ -142,34 +105,9 @@ export default function Experiments() {
             ))}
           </Grid>
         </Container>
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Link
-                    color="inherit"
-                    variant="inherit"
-                    className={classes.link}
-                    href="https://codesandbox.io/u/jaredscarr"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Button variant="outlined" color="primary">
-                      More
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }
+
+export default Experiments;

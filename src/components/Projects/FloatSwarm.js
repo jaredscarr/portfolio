@@ -1,7 +1,21 @@
 import * as THREE from 'three'
-import React, { useRef, useMemo } from 'react'
-import { useFrame } from 'react-three-fiber'
 import '../../App.css';
+import React, { useCallback, useRef, useMemo, Fragment } from 'react'
+import { Canvas, useFrame } from 'react-three-fiber'
+import { makeStyles } from '@material-ui/core/styles'
+import ProjectNavBar from '../Navigation/ProjectNavBar'
+
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    height: '100vh',
+  },
+  overlay: {
+    position: 'absolute',
+    zIndex: 1,
+    margin: theme.spacing(3),
+  },
+}));
 
 const Swarm = ({ count, mouse }) => {
   const mesh = useRef()
@@ -50,4 +64,35 @@ const Swarm = ({ count, mouse }) => {
   )
 }
 
-export default Swarm;
+const FloatSwarm = () => {
+  const classes = useStyles();
+
+  const mouse = useRef([0, 0])
+  const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
+
+  return (
+    <Fragment>
+      <div className={classes.overlay}>
+        <ProjectNavBar next_url={"/horizon"} />
+      </div>
+      <div className={classes.container} onMouseMove={onMouseMove}>
+        <Canvas
+          gl={{ alpha: false, antialias: false, logarithmicDepthBuffer: true }}
+          camera={{ fov: 75, position: [0, 0, 70] }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x070712)
+            gl.toneMapping = THREE.ACESFilmicToneMapping
+            gl.outputEncoding = THREE.sRGBEncoding
+          }}
+        >
+          <ambientLight intensity={2} />
+          <pointLight position={[100, 100, 100]} intensity={2.2} />
+          <pointLight position={[-100, -100, -100]} intensity={5} color="white" />
+          <Swarm mouse={mouse} count={25} />
+        </Canvas>
+      </div>
+    </Fragment>
+  )
+}
+
+export default FloatSwarm;
