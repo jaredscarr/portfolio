@@ -84,13 +84,13 @@ const Home = () => {
           <Typography
             className={classes.navlink}
             variant="subtitle2"
-            onClick={() => parallax.scrollTo(2)}
+            onClick={() => parallax.scrollTo(3)}
           >
             CONNECT
           </Typography>
         </Toolbar>
       </AppBar>
-      <Parallax pages={3} ref={ref => parallax = ref}>
+      <Parallax pages={4} ref={ref => parallax = ref}>
         <div>
           <ParallaxLayer
             offset={0}
@@ -125,7 +125,7 @@ const Home = () => {
             jaredscarr.com
           </Typography>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.8} speed={-1}>
+        <ParallaxLayer offset={0.9} speed={-1}>
           <footer className={classes.footer}>
             <Copyright />
           </footer>
@@ -133,7 +133,7 @@ const Home = () => {
         <ParallaxLayer offset={1.1} speed={1} style={{ textAlign: "center" }}>
           <Experiments />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.4} speed={0} style={{ textAlign: "center" }}>
+        <ParallaxLayer offset={3.4} speed={0} style={{ textAlign: "center" }}>
           <Typography className={classes.subtitle} variant="h6" align="center" color="textSecondary" paragraph>
             jaredscarr@gmail.com
           </Typography>
