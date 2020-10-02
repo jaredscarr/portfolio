@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavButton = ({ url }) => {
+const NavButton = ({ prev_url, next_url }) => {
   const classes = useStyles()
 
   return (
@@ -37,8 +37,13 @@ const NavButton = ({ url }) => {
         <Link component={RouterLink} to="/" className={classes.link} underline="none">
           <Typography className={classes.navlink} variant="subtitle2">HOME</Typography>
         </Link>
-        {url &&
-          <Link component={RouterLink} to={url} className={classes.link} underline="none">
+        {prev_url &&
+          <Link component={RouterLink} to={prev_url} className={classes.link} underline="none">
+            <Typography className={classes.navlink} variant="subtitle2">PREVIOUS</Typography>
+          </Link>
+        }
+        {next_url &&
+          <Link component={RouterLink} to={next_url} className={classes.link} underline="none">
             <Typography className={classes.navlink} variant="subtitle2">NEXT</Typography>
           </Link>
         }

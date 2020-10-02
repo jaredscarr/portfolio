@@ -73,7 +73,7 @@ const FloatSwarm = () => {
   return (
     <Fragment>
       <div className={classes.overlay}>
-        <ProjectNavBar url={"/horizon"} />
+        <ProjectNavBar next_url={"/horizon"} />
       </div>
       <div className={classes.container} onMouseMove={onMouseMove}>
         <Canvas
