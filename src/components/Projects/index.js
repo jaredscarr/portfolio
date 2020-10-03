@@ -81,26 +81,23 @@ const Experiments = () => {
           <Grid container spacing={4}>
             {experiments.map((exp) => (
               <Grid item key={exp.link} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={exp.image}
-                    title={exp.title}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {exp.heading}
-                    </Typography>
-                    <Typography>
-                      {exp.content}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Link className={classes.link} component={RouterLink} to={exp.link} underline="none">
-                      <Typography className={classes.link} variant="subtitle2">View</Typography>
-                    </Link>
-                  </CardActions>
-                </Card>
+                <Link component={RouterLink} to={exp.link} underline="none">
+                  <Card className={classes.card}>
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={exp.image}
+                      title={exp.title}
+                    />
+                    <CardContent className={classes.cardContent}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {exp.heading}
+                      </Typography>
+                      <Typography>
+                        {exp.content}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
               </Grid>
             ))}
           </Grid>
