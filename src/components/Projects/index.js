@@ -55,13 +55,6 @@ const experiments = [
     link: "/horizon"
   },
   {
-    title: "Lighting",
-    image: sphere,
-    heading: "Lighting",
-    content: "Backdrop, object, and lighting",
-    link: "/sphere"
-  },
-  {
     title: "Terrain",
     image: terrain,
     heading: "Terrain",
