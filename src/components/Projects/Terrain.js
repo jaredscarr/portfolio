@@ -94,7 +94,7 @@ const Scene = () => {
   return (
     <Fragment>
       <div className={classes.overlay}>
-        <ProjectNavBar prev_url="/sphere" />
+        <ProjectNavBar prev_url="/horizon" />
       </div>
       <div className={classes.container}>
         <Canvas

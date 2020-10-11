@@ -1,7 +1,5 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -15,7 +13,6 @@ import {
 } from "react-router-dom"
 import terrain from './static/terrain.png'
 import horizon from './static/horizon.png'
-import sphere from './static/sphere.png'
 import swarm from './static/swarm.png'
 
 const useStyles = makeStyles((theme) => ({
@@ -53,13 +50,6 @@ const experiments = [
     heading: "Movement",
     content: "Playing with camera rotation and movement while rotating objects",
     link: "/horizon"
-  },
-  {
-    title: "Lighting",
-    image: sphere,
-    heading: "Lighting",
-    content: "Backdrop, object, and lighting",
-    link: "/sphere"
   },
   {
     title: "Terrain",

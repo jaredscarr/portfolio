@@ -2,10 +2,8 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import {
-  Link as RouterLink
-} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
+import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -34,18 +32,18 @@ const NavButton = ({ prev_url, next_url }) => {
   return (
     <AppBar position="static" className={classes.navroot}>
       <Toolbar>
-        <Link component={RouterLink} to="/" className={classes.link} underline="none">
+        <Button component={RouterLink} to="/" className={classes.link} underline="none">
           <Typography className={classes.navlink} variant="subtitle2">HOME</Typography>
-        </Link>
+        </Button>
         {prev_url &&
-          <Link component={RouterLink} to={prev_url} className={classes.link} underline="none">
+          <Button component={RouterLink} to={prev_url} className={classes.link} underline="none">
             <Typography className={classes.navlink} variant="subtitle2">PREVIOUS</Typography>
-          </Link>
+          </Button>
         }
         {next_url &&
-          <Link component={RouterLink} to={next_url} className={classes.link} underline="none">
+          <Button component={RouterLink} to={next_url} className={classes.link} underline="none">
             <Typography className={classes.navlink} variant="subtitle2">NEXT</Typography>
-          </Link>
+          </Button>
         }
       </Toolbar>
     </AppBar>

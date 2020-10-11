@@ -1,27 +1,24 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import './App.css'
-import Experiments from './components/Projects/index'
 import Home from './components/Home/Home';
+import FloatSwarm from './components/Projects/FloatSwarm'
 import Terrain from './components/Projects/Terrain'
 import Horizon from './components/Projects/Horizon'
-import Sphere from './components/Projects/Sphere'
-import FloatSwarm from './components/Projects/FloatSwarm'
-import { Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
 
 const App = () => {
 
   return (
-    <Fragment>
-      <Switch>
-        <Route path="/floatswarm" exact component={FloatSwarm} />
-        <Route path="/horizon" exact component={Horizon} />
-        <Route path="/sphere" exact component={Sphere} />
-        <Route path="/terrain" exact component={Terrain} />
-        <Route path="/experiments" exact component={Experiments} />
-        <Route path="/" exact component={Home} />
-      </Switch>
-    </Fragment>
-  );
+    <Router>
+      <Routes>  
+        <Route path="/" element={<Home />} />
+        <Route path="/floatswarm" element={<FloatSwarm />} />
+        <Route path="/terrain" element={<Terrain />} />
+        <Route path="/horizon" element={<Horizon />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;

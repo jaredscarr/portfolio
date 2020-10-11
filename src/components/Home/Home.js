@@ -1,13 +1,14 @@
-import React, { Suspense, Fragment } from "react"
-import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons"
+import React, { Suspense, Fragment, useRef } from "react"
+import { Parallax, ParallaxLayer } from "@react-spring/parallax"
 import { Canvas } from "react-three-fiber"
 import Background from './Background'
 import Experiments from '../Projects/index'
+import ContactForm from './ContactForm'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import Link from '@material-ui/core/Link'
+import { Link as MuiLink } from '@material-ui/core'
 import Code from '@material-ui/icons/Code'
 import GitHub from '@material-ui/icons/GitHub'
 import LinkedIn from '@material-ui/icons/LinkedIn'
@@ -49,9 +50,9 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <MuiLink color="inherit" href="https://material-ui.com/">
         jaredscarr.com
-      </Link>{' '}
+      </MuiLink>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -61,7 +62,7 @@ const Copyright = () => {
 const Home = () => {
   
   const classes = useStyles()
-  let parallax;
+  const ref = useRef()
 
   return (
     <Fragment>
@@ -70,37 +71,37 @@ const Home = () => {
           <Typography
             className={classes.navlink}
             variant="subtitle2"
-            onClick={() => parallax.scrollTo(0)}
+            onClick={() => ref.current.scrollTo(0)}
           >
             HOME
           </Typography>
           <Typography
             className={classes.navlink}
             variant="subtitle2"
-            onClick={() => parallax.scrollTo(1)}
+            onClick={() => ref.current.scrollTo(1)}
           >
             EXPERIMENTS
           </Typography>
           <Typography
             className={classes.navlink}
             variant="subtitle2"
-            onClick={() => parallax.scrollTo(3)}
+            onClick={() => ref.current.scrollTo(3)}
           >
             CONNECT
           </Typography>
         </Toolbar>
       </AppBar>
-      <Parallax pages={4} ref={ref => parallax = ref}>
+      <Parallax pages={4} ref={ref}>
         <div>
           <ParallaxLayer
             offset={0}
             speed={-1.1}
             factor={0.9}
             style={{ opacity: 0.3 }}
-            onClick={() => parallax.scrollTo(1)}
+            onClick={() => ref.current.scrollTo(1)}
           >
             <Suspense fallback="Loading ... ">
-              <Canvas postition={[0, 0, 0]}>
+              <Canvas id="canvas" postition={[0, 0, 0]}>
                 <ambientLight />
                 <pointLight position={[10, 10, 10]} />
                 <Background
@@ -119,9 +120,9 @@ const Home = () => {
             alignItems: "center",
             justifyContent: "center"
           }}
-          onClick={() => parallax.scrollTo(1)}
+          onClick={() => ref.current.scrollTo(1)}
         >
-          <Typography className={classes.title} variant="h4" align="center" color="textPrimary" paragraph>
+          <Typography id="websiteTitle" className={classes.title} variant="h4" align="center" color="textPrimary" paragraph>
             jaredscarr.com
           </Typography>
         </ParallaxLayer>
@@ -133,12 +134,12 @@ const Home = () => {
         <ParallaxLayer offset={1.1} speed={1} style={{ textAlign: "center" }}>
           <Experiments />
         </ParallaxLayer>
-        <ParallaxLayer offset={3.4} speed={0} style={{ textAlign: "center" }}>
-          <Typography className={classes.subtitle} variant="h6" align="center" color="textSecondary" paragraph>
-            jaredscarr@gmail.com
-          </Typography>
+        <ParallaxLayer offset={3.05} speed={0} style={{ textAlign: "center" }}>
+          <ContactForm />
+        </ParallaxLayer>
+        <ParallaxLayer offset={3.8} speed={0} style={{ textAlign: "center" }}>
           <Typography className={classes.linkPosition} align="center">
-            <Link
+            <MuiLink
               color="inherit"
               variant="inherit"
               className={classes.link}
@@ -147,8 +148,8 @@ const Home = () => {
               rel="noreferrer moopener"
             >
               <LinkedIn />
-            </Link>
-            <Link
+            </MuiLink>
+            <MuiLink
               color="inherit"
               variant="inherit" 
               className={classes.link}
@@ -157,8 +158,8 @@ const Home = () => {
               rel="noreferrer moopener"
             >
               <Code />
-            </Link>
-            <Link
+            </MuiLink>
+            <MuiLink
               color="inherit"
               variant="inherit"
               className={classes.link}
@@ -167,7 +168,7 @@ const Home = () => {
               rel="noreferrer moopener"
             >
               <GitHub />
-            </Link>
+            </MuiLink>
           </Typography>
         </ParallaxLayer>
       </Parallax>
