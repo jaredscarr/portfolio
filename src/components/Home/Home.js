@@ -134,8 +134,10 @@ const Home = () => {
         <ParallaxLayer offset={1.1} speed={1} style={{ textAlign: "center" }}>
           <Experiments />
         </ParallaxLayer>
-        <ParallaxLayer offset={3.1} speed={0} style={{ textAlign: "center" }}>
+        <ParallaxLayer offset={3.05} speed={0} style={{ textAlign: "center" }}>
           <ContactForm />
+        </ParallaxLayer>
+        <ParallaxLayer offset={3.8} speed={0} style={{ textAlign: "center" }}>
           <Typography className={classes.linkPosition} align="center">
             <MuiLink
               color="inherit"

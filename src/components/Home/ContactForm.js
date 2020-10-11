@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
   submitButtonContainer: {
     textAlign: 'center',
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
   },
-  submitButton: {
-    marginLeft: theme.spacing(60),
+  messagePlaceholder: {
+    padding: theme.spacing(12),
   }
 }));
 
@@ -76,68 +76,74 @@ const ContactForm = () => {
     },
     validate,
     onSubmit: values => {
+      setFormVisibility(false)
       const res = postData(process.env.REACT_APP_AWS_GATEWAY_URL, values)
-        if (res.status === 200) { // or whatever this needs to be
+        if (res.status === 200) {
           setFormVisibility(false)
-          return 'Success'
+          return res
         } else {
-          return 'Error'
+          return res
         }
       },
     })
 
   return (
     <div>
-    {formVisible ?
-    <form
-      onSubmit={formik.handleSubmit}
-      noValidate
-      autoComplete="off"
-    >
-      <Grid container spacing={6}>
-        <Grid item xs={12}>
-          <TextField
-            id="name"
-            className={classes.textFieldLayout}
-            label="Name"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.name}
-            margin="normal"
-          />
-          {formik.touched.name && formik.errors.name ? (<div>{formik.errors.name}</div>) : <div><p></p></div>}
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="email"
-            className={classes.textFieldLayout}
-            label="Email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            margin="normal"
-          />
-          {formik.touched.email && formik.errors.email ? (<div>{formik.errors.email}</div>) : <div><p></p></div>}
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="message"
-            className={classes.textFieldFullWidthLayout}
-            label="Message"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.message}
-            margin="normal"
-            multiline
-          />
-        {formik.touched.message && formik.errors.message ? (<div>{formik.errors.message}</div>) : <div><p></p></div>}
-        </Grid>
-      </Grid>
-      <div className={classes.submitButtonContainer}>
-        <Button className={classes.submitButton} type="submit" variant="outlined" >Submit</Button>
+      {formVisible &&
+      <div> 
+        <form
+          onSubmit={formik.handleSubmit}
+          noValidate
+          autoComplete="off"
+        >
+          <Grid container spacing={6}>
+            <Grid item xs={12}>
+              <TextField
+                id="name"
+                className={classes.textFieldLayout}
+                label="Name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name ? (<div>{formik.errors.name}</div>) : <div><p></p></div>}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="email"
+                className={classes.textFieldLayout}
+                label="Email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (<div>{formik.errors.email}</div>) : <div><p></p></div>}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="message"
+                className={classes.textFieldFullWidthLayout}
+                label="Message"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.message}
+                multiline
+              />
+            {formik.touched.message && formik.errors.message ? (<div>{formik.errors.message}</div>) : <div><p></p></div>}
+            </Grid>
+          </Grid>
+          <div className={classes.submitButtonContainer}>
+            <Button className={classes.submitButton} type="submit" variant="outlined">Submit</Button>
+          </div>
+        </form>
       </div>
-    </form>
-    : <h3>Message Sent</h3> }
+      }
+      {!formVisible &&
+      <div className={classes.messagePlaceholder}>
+        <h5>Message Sent!</h5>
+        <p>Thank you! I will get back to you as soon as possible.</p>
+      </div>
+      }
     </div>
   );
 };
