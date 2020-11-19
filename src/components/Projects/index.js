@@ -8,12 +8,10 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Link from '@material-ui/core/Link'
-import {
-  Link as RouterLink
-} from "react-router-dom"
 import terrain from './static/terrain.png'
 import horizon from './static/horizon.png'
 import swarm from './static/swarm.png'
+import palm from './static/palm.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,25 +36,32 @@ const useStyles = makeStyles((theme) => ({
 
 const experiments = [
   {
+    title: "House Plants",
+    image: palm,
+    heading: "HousePlants",
+    content: "A serverless application with React.",
+    link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  },
+  {
     title: "Float",
     image: swarm,
     heading: "Float",
     content: "Sprite objects with movement triggered by mouse movement",
-    link: "/floatswarm"
+    link: `${window.origin}/floatswarm`
   },
   {
     title: "Moving Ground",
     image: horizon,
     heading: "Movement",
     content: "Playing with camera rotation and movement while rotating objects",
-    link: "/horizon"
+    link: `${window.origin}/horizon`
   },
   {
     title: "Terrain",
     image: terrain,
     heading: "Terrain",
     content: "Terrain example with rough shading",
-    link: "/terrain"
+    link: `${window.origin}/terrain`
   },
 ]
 
@@ -71,7 +76,7 @@ const Experiments = () => {
           <Grid container spacing={4}>
             {experiments.map((exp) => (
               <Grid item key={exp.link} xs={12} sm={6} md={4}>
-                <Link component={RouterLink} to={exp.link} underline="none">
+                <Link href={exp.link} underline="none">
                   <Card className={classes.card}>
                     <CardMedia
                       className={classes.cardMedia}
