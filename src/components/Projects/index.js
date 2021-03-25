@@ -12,6 +12,7 @@ import terrain from './static/terrain.png'
 import horizon from './static/horizon.png'
 import swarm from './static/swarm.png'
 import palm from './static/palm.png'
+import raspberry from './static/raspberry.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,13 @@ const experiments = [
     heading: "HousePlants",
     content: "A serverless application with React.",
     link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  },
+  {
+    title: "IoT Moisture Dashboard",
+    image: raspberry,
+    heading: "Monitoring Dashboard",
+    content: "RaspberryPi connected through AWS IoT.",
+    link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
   {
     title: "Float",
