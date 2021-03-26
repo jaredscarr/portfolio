@@ -131,7 +131,7 @@ const Home = () => {
             <Copyright />
           </footer>
         </ParallaxLayer>
-        <ParallaxLayer offset={1.1} speed={1} style={{ textAlign: "center" }}>
+        <ParallaxLayer offset={0.8} speed={1} style={{ textAlign: "center" }}>
           <Experiments />
         </ParallaxLayer>
         <ParallaxLayer offset={3.05} speed={0} style={{ textAlign: "center" }}>
