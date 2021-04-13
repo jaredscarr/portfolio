@@ -6,6 +6,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useFormik } from 'formik'
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    // color: 'transparent',
+  },
   textFieldLayout: {
     marginLeft: theme.spacing(1),
   },
@@ -88,7 +91,7 @@ const ContactForm = () => {
     })
 
   return (
-    <div>
+    <div className={classes.root}>
       {formVisible &&
       <div> 
         <form

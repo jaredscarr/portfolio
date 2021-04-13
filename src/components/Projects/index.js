@@ -1,42 +1,45 @@
-import React from 'react'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Link from '@material-ui/core/Link'
-import terrain from './static/terrain.png'
-import horizon from './static/horizon.png'
-import swarm from './static/swarm.png'
-import palm from './static/palm.png'
-import raspberry from './static/raspberry.png'
+import React, { useState, useCallback } from 'react';
+
+import palm from './static/palm.png';
+import dashboard from './static/dashboard.png';
+
+
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Slide from '@material-ui/core/Slide';
+import Typography from '@material-ui/core/Typography';
+
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'relative',
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    marginTop: '20vh',
+    flexGrow: 1,
   },
   card: {
     height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    height: 300,
+    width: 300,
   },
   cardContent: {
     flexGrow: 1,
   },
+  projNav: {
+    marginTop: theme.spacing(2),
+  }
 }));
 
-const experiments = [
+const projects = [
   {
+    id: 1,
     title: "House Plants",
     image: palm,
     heading: "HousePlants",
@@ -44,70 +47,94 @@ const experiments = [
     link: "https://master.d3me9qsquudsan.amplifyapp.com/"
   },
   {
+    id: 2,
     title: "IoT Moisture Dashboard",
-    image: raspberry,
-    heading: "Monitoring Dashboard",
-    content: "RaspberryPi connected through AWS IoT.",
+    image: dashboard,
+    heading: "Dashboard",
+    content: "AWS IoT Moisture Sensor.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
-  },
-  {
-    title: "Float",
-    image: swarm,
-    heading: "Float",
-    content: "Sprite objects with movement triggered by mouse movement",
-    link: `${window.origin}/floatswarm`
-  },
-  {
-    title: "Moving Ground",
-    image: horizon,
-    heading: "Movement",
-    content: "Playing with camera rotation and movement while rotating objects",
-    link: `${window.origin}/horizon`
-  },
-  {
-    title: "Terrain",
-    image: terrain,
-    heading: "Terrain",
-    content: "Terrain example with rough shading",
-    link: `${window.origin}/terrain`
   },
 ]
 
-const Experiments = () => {
+const Project = ({ project }) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.root}>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
-            {experiments.map((exp) => (
-              <Grid item key={exp.link} xs={12} sm={6} md={4}>
-                <Link href={exp.link} underline="none">
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={exp.image}
-                      title={exp.title}
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {exp.heading}
-                      </Typography>
-                      <Typography>
-                        {exp.content}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-    </React.Fragment>
+    <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout={1000} onEntering={(e)=> console.log('enter', e)}>
+      <Card className={classes.card}>
+        <Link href={project.link} underline="none">
+          <CardMedia
+            className={classes.cardMedia}
+            image={project.image}
+            title={project.title}
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {project.heading}
+            </Typography>
+            <Typography>
+              {project.content}
+            </Typography>
+          </CardContent>
+        </Link> 
+      </Card>
+    </Slide>
   );
 }
 
-export default Experiments;
+const projectList = projects.map((project) => {
+  return <Project key={project.id} project={project} />
+});
+
+const Projects = () => {
+  const classes = useStyles();
+  const [projectIndex, setProjectIndex] = useState(0);
+
+  const handleForward = () => {
+    if (projectIndex === projects.length - 1) {
+      setProjectIndex(0);
+    } else {
+      setProjectIndex(projectIndex + 1);
+    }
+  };
+
+  const handleBackward = () => {
+    if (projectIndex === 0) {
+      setProjectIndex(projects.length - 1);
+    } else {
+      setProjectIndex(projectIndex - 1);
+    }
+  };
+
+  return (
+    <div className={classes.root}>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item>
+          {projectList[projectIndex]}
+        </Grid>
+      </Grid>
+      <Grid
+        className={classes.projNav}
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item>
+          <ArrowBackIosIcon onClick={handleBackward} />
+        </Grid>
+        <Grid item>
+          <ArrowForwardIosIcon onClick={handleForward} />
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
+
+export default Projects;
