@@ -3,6 +3,10 @@ import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useSpring, animated } from 'react-spring/three';
 
+import Theme from '../../Theme';
+
+// const getHexInt = (color) => return parseInt(color.substr(1), 16);
+
 // function Box(props) {
 
 //   const mesh = useRef()
@@ -43,11 +47,11 @@ function OctahedronGeometry(props) {
   )
 }
 
-const Menu = ({ menuState }) => {
+const Menu = ({ menuState, darkState }) => {
 
   const vertices = [[-1, 0, 0], [0, 1, 0], [1, 0, 0], [0, -1, 0], [-1, 0, 0]];
   const { color, pos, ...props } = useSpring({
-    color: menuState ? 'blue' : 'black',
+    color: menuState ? Theme.palette.secondary.dark : Theme.palette.primary.main,
     pos: menuState ? [0, 0, 0] : [0, 0, 2],
     'material-opacity': menuState ? 0.25 : 0.6,
     scale: menuState ? [1, 1, 1] : [1.5, 1.5, 1.5],
@@ -63,18 +67,25 @@ const Menu = ({ menuState }) => {
       </animated.line>
       <animated.mesh {...props}>
         <octahedronGeometry attach="geometry" />
-        <meshStandardMaterial attach="material" color="grey" />
+        <meshStandardMaterial attach="material" color={darkState ? Theme.palette.secondary.dark : Theme.palette.primary.main} />
       </animated.mesh>
     </group>
   );
 }
 
 const BackDrop = ({ darkState }) => {
-  console.log(darkState);
+  // Hex colors need to be translated into what Three.js expects in order to match. Thats the next step
+  // const dark = parseInt(Theme.palette.primary.dark.substr(1), 16);
+  // const light = parseInt(Theme.palette.primary.light.substr(1), 16);
+
+  const dark = Theme.palette.primary.dark;
+  const light = Theme.palette.primary.light;
+  console.log('Background colors: ', dark, light);
+
   return (
     <mesh receiveShadow position={[0, -1, -5]}>
       <planeBufferGeometry attach="geometry" args={[500, 500]} />
-      <meshStandardMaterial attach="material" color={darkState ? 'white': 'black'} opacity={0.6}/>
+      <meshStandardMaterial attach="material" color={darkState ? dark : light} />
     </mesh>
   );
 }
@@ -130,7 +141,7 @@ const Background = ({ menuState, darkState }) => {
       <BackDrop darkState={darkState} />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Menu menuState={menuState} />
+      <Menu menuState={menuState} darkState={darkState}/>
     </React.Fragment>
   );
 

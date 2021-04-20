@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '40vh',
-    marginBottom: '35vh',
+    marginBottom: '20vh',
   },
   title: {
     letterSpacing: theme.spacing(0.8),
@@ -28,7 +28,6 @@ const Main = ({ menuState, onClick }) => {
       alignItems="center"
     >
       <Typography
-        id="websiteTitle"
         className={classes.title}
         variant="h4"
         align="center"

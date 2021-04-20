@@ -1,41 +1,19 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import palm from './static/palm.png';
-import dashboard from './static/dashboard.png';
-
-
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: '20vh',
-    flexGrow: 1,
-  },
-  card: {
-    height: '100%',
-  },
-  cardMedia: {
-    height: 300,
-    width: 300,
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  projNav: {
-    marginTop: theme.spacing(2),
-  }
-}));
+import palm from './static/palm.png';
+import dashboard from './static/dashboard.png';
+import Theme from '../../Theme';
 
 const projects = [
   {
@@ -51,16 +29,39 @@ const projects = [
     title: "IoT Moisture Dashboard",
     image: dashboard,
     heading: "Dashboard",
-    content: "AWS IoT Moisture Sensor.",
+    content: "AWS IoT monitoring a plant.",
+    link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
+  },
+  {
+    id: 3,
+    title: "House Plants",
+    image: palm,
+    heading: "HousePlants",
+    content: "A serverless application with React.",
+    link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  },
+  {
+    id: 4,
+    title: "IoT Moisture Dashboard",
+    image: dashboard,
+    heading: "Dashboard",
+    content: "AWS IoT monitoring a plant.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
 ]
 
 const Project = ({ project }) => {
+  const useStyles = makeStyles((theme) => ({
+    cardMedia: {
+      height: 200,
+      width: 300,
+    },
+  }));
+
   const classes = useStyles();
 
   return (
-    <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout={1000} onEntering={(e)=> console.log('enter', e)}>
+    <Grid item>
       <Card className={classes.card}>
         <Link href={project.link} underline="none">
           <CardMedia
@@ -78,62 +79,38 @@ const Project = ({ project }) => {
           </CardContent>
         </Link> 
       </Card>
-    </Slide>
+    </Grid>
   );
 }
 
-const projectList = projects.map((project) => {
-  return <Project key={project.id} project={project} />
-});
+const Projects = ({ darkState }) => {
+  let color = 'transparent';
+  let paddingTop = '20vh';
+  const route = useLocation();
 
-const Projects = () => {
+  if (route.pathname === '/projects') {
+    color = darkState ? Theme.palette.primary.dark : Theme.palette.primary.main;
+    paddingTop = '15vh';
+  }
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      paddingTop: paddingTop,
+      flexGrow: 1,
+      background: color,
+    },
+  }));
+
   const classes = useStyles();
-  const [projectIndex, setProjectIndex] = useState(0);
-
-  const handleForward = () => {
-    if (projectIndex === projects.length - 1) {
-      setProjectIndex(0);
-    } else {
-      setProjectIndex(projectIndex + 1);
-    }
-  };
-
-  const handleBackward = () => {
-    if (projectIndex === 0) {
-      setProjectIndex(projects.length - 1);
-    } else {
-      setProjectIndex(projectIndex - 1);
-    }
-  };
 
   return (
-    <div className={classes.root}>
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid item>
-          {projectList[projectIndex]}
+    <Grid container className={classes.root} spacing={2}>
+      <Grid item xs={12}>
+        <Grid container justify="space-evenly" spacing={10}>
+          {projects.map( project => <Project key={project.id} project={project} /> )}
         </Grid>
       </Grid>
-      <Grid
-        className={classes.projNav}
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item>
-          <ArrowBackIosIcon onClick={handleBackward} />
-        </Grid>
-        <Grid item>
-          <ArrowForwardIosIcon onClick={handleForward} />
-        </Grid>
-      </Grid>
-    </div>
+    </Grid>
   );
 }
 
