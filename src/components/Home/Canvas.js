@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
 const BackgroundCanvas = ({ menuState, darkState }) => {
   
   const classes = useStyles();
-  const ref = useRef();
-  console.log(darkState);
+
   return (
     <div className={classes.container}>
       <Canvas className={classes.canvas} postition={[0, 0, 0]}>
