@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, useLocation } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import About from './About';
 import ContactForm from './ContactForm';
@@ -8,22 +8,14 @@ import ExternalLinks from './ExternalLinks';
 import Footer from './Footer';
 import Main from './Main';
 import Projects from '../Projects/index';
-import Theme from '../../Theme';
 
 import AppBar from '@material-ui/core/AppBar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Toolbar from '@material-ui/core/Toolbar';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 
 const Overlay = ({ menuState, onClick, onChange, darkState }) => {
-  let color = 'transparent';
-  const route = useLocation();
-
-  if (route.pathname === '/projects') {
-    color = darkState ? Theme.palette.primary.dark : Theme.palette.primary.main;
-  }
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +25,7 @@ const Overlay = ({ menuState, onClick, onChange, darkState }) => {
     },
     appBarRoot: {
       flexGrow: 1,
-      backgroundColor: color,
+      backgroundColor: 'transparent',
     },
     themeSwitch: {
       marginLeft: 'auto',
