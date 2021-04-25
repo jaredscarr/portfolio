@@ -1,19 +1,17 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 import palm from './static/palm.png';
 import dashboard from './static/dashboard.png';
-import Theme from '../../Theme';
+import getTheme from '../../Theme';
 
 const projects = [
   {
@@ -32,28 +30,44 @@ const projects = [
     content: "AWS IoT monitoring a plant.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
-  {
-    id: 3,
-    title: "House Plants",
-    image: palm,
-    heading: "HousePlants",
-    content: "A serverless application with React.",
-    link: "https://master.d3me9qsquudsan.amplifyapp.com/"
-  },
-  {
-    id: 4,
-    title: "IoT Moisture Dashboard",
-    image: dashboard,
-    heading: "Dashboard",
-    content: "AWS IoT monitoring a plant.",
-    link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
-  },
+  // {
+  //   id: 3,
+  //   title: "House Plants",
+  //   image: palm,
+  //   heading: "HousePlants",
+  //   content: "A serverless application with React.",
+  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  // },
+  // {
+  //   id: 4,
+  //   title: "IoT Moisture Dashboard",
+  //   image: dashboard,
+  //   heading: "Dashboard",
+  //   content: "AWS IoT monitoring a plant.",
+  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
+  // },
+  // {
+  //   id: 5,
+  //   title: "House Plants",
+  //   image: palm,
+  //   heading: "HousePlants",
+  //   content: "A serverless application with React.",
+  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  // },
+  // {
+  //   id: 6,
+  //   title: "IoT Moisture Dashboard",
+  //   image: dashboard,
+  //   heading: "Dashboard",
+  //   content: "AWS IoT monitoring a plant.",
+  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
+  // },
 ]
 
 const Project = ({ project }) => {
   const useStyles = makeStyles((theme) => ({
     cardMedia: {
-      height: 200,
+      height: 300,
       width: 300,
     },
   }));
@@ -84,33 +98,35 @@ const Project = ({ project }) => {
 }
 
 const Projects = ({ darkState }) => {
-  let color = 'transparent';
-  let paddingTop = '20vh';
-  const route = useLocation();
 
-  if (route.pathname === '/projects') {
-    color = darkState ? Theme.palette.primary.dark : Theme.palette.primary.main;
-    paddingTop = '15vh';
-  }
-
+  const paletteType = darkState ? 'dark' : 'light';
+  const theme = getTheme(paletteType);
+  
   const useStyles = makeStyles((theme) => ({
     root: {
-      paddingTop: paddingTop,
+      backgroundColor: darkState ? theme.palette.primary.dark : theme.palette.primary.light,
+    },
+    grid: {
+      paddingTop: '30vh',
+      paddingBottom: '10vh',
       flexGrow: 1,
-      background: color,
     },
   }));
 
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justify="space-evenly" spacing={10}>
-          {projects.map( project => <Project key={project.id} project={project} /> )}
+    <ThemeProvider theme={theme}>
+      <Paper className={classes.root} elevation={0}>
+        <Grid container className={classes.grid} spacing={2}>
+          <Grid item xs={12}>
+            <Grid className={classes.subContainer} container justify="space-evenly" spacing={10}>
+              {projects.map( project => <Project key={project.id} project={project} /> )}
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </Paper>
+    </ThemeProvider>
   );
 }
 

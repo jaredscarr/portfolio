@@ -2,8 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useSpring, animated } from 'react-spring/three';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import Theme from '../../Theme';
+import getTheme from '../../Theme';
 
 // const getHexInt = (color) => return parseInt(color.substr(1), 16);
 
@@ -49,9 +50,12 @@ function OctahedronGeometry(props) {
 
 const Menu = ({ menuState, darkState }) => {
 
+  const paletteType = darkState ? 'dark' : 'light';
+  const theme = getTheme(paletteType);
+
   const vertices = [[-1, 0, 0], [0, 1, 0], [1, 0, 0], [0, -1, 0], [-1, 0, 0]];
   const { color, pos, ...props } = useSpring({
-    color: menuState ? Theme.palette.secondary.dark : Theme.palette.primary.main,
+    color: darkState ? theme.palette.secondary.light : theme.palette.secondary.dark,
     pos: menuState ? [0, 0, 0] : [0, 0, 2],
     'material-opacity': menuState ? 0.25 : 0.6,
     scale: menuState ? [1, 1, 1] : [1.5, 1.5, 1.5],
@@ -67,28 +71,24 @@ const Menu = ({ menuState, darkState }) => {
       </animated.line>
       <animated.mesh {...props}>
         <octahedronGeometry attach="geometry" />
-        <meshStandardMaterial attach="material" color={darkState ? Theme.palette.secondary.dark : Theme.palette.primary.main} />
+        <meshStandardMaterial attach="material" color={darkState ? theme.palette.primary.dark : theme.palette.primary.light} />
       </animated.mesh>
     </group>
   );
 }
 
-const BackDrop = ({ darkState }) => {
-  // Hex colors need to be translated into what Three.js expects in order to match. Thats the next step
-  // const dark = parseInt(Theme.palette.primary.dark.substr(1), 16);
-  // const light = parseInt(Theme.palette.primary.light.substr(1), 16);
+// const BackDrop = ({ darkState }) => {
 
-  const dark = Theme.palette.primary.dark;
-  const light = Theme.palette.primary.light;
-  console.log('Background colors: ', dark, light);
+//   const dark = Theme.palette.primary.dark;
+//   const light = Theme.palette.primary.main;
 
-  return (
-    <mesh receiveShadow position={[0, -1, -5]}>
-      <planeBufferGeometry attach="geometry" args={[500, 500]} />
-      <meshStandardMaterial attach="material" color={darkState ? dark : light} />
-    </mesh>
-  );
-}
+//   return (
+//     <mesh receiveShadow position={[0, -1, -5]}>
+//       <planeBufferGeometry attach="geometry" args={[500, 500]} />
+//       <meshStandardMaterial attach="material" color={darkState ? dark : light} />
+//     </mesh>
+//   );
+// }
 
 const Background = ({ menuState, darkState }) => {
 
@@ -126,24 +126,26 @@ const Background = ({ menuState, darkState }) => {
   // });
 
 
-
-  // if (darkTheme) {
-  //   scene.background = 0xff0000;
-  // }
-
-
   // const menuProps = useSpring({
   //   position: menuState ? [-10, 10, 0] : [0, 0, 0],
   // });
 
-  return (
-    <React.Fragment>
-      <BackDrop darkState={darkState} />
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Menu menuState={menuState} darkState={darkState}/>
-    </React.Fragment>
-  );
+    return (
+      <React.Fragment>
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <Menu menuState={menuState} darkState={darkState}/>
+      </React.Fragment>
+    );
+
+  // return (
+  //   <React.Fragment>
+  //     <BackDrop darkState={darkState} />
+  //     <ambientLight />
+  //     <pointLight position={[10, 10, 10]} />
+  //     <Menu menuState={menuState} darkState={darkState}/>
+  //   </React.Fragment>
+  // );
 
 	// return (
  //    <React.Fragment>

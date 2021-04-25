@@ -7,19 +7,34 @@ import { useFormik } from 'formik'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // color: 'transparent',
+    flexGrow: 1,
+    textAlign: 'center',
+    marginTop: '20vh',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '10vh',
+    },
   },
   textFieldLayout: {
-    marginLeft: theme.spacing(1),
+    width: '50%',
+    marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: theme.spacing(2),
+    },
   },
   textFieldFullWidthLayout: {
-    width: '60%',
-    marginLeft: '20%',
-    marginRight: '20%',
+    width: '75%',
+    marginBottom: theme.spacing(15),
+    [theme.breakpoints.down('xs')]: {
+      width: '50%',
+      marginBottom: theme.spacing(5),
+    },
+    
   },
   submitButtonContainer: {
-    textAlign: 'center',
-    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(10),
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: theme.spacing(3),
+    },
   },
   messagePlaceholder: {
     padding: theme.spacing(12),
@@ -99,8 +114,12 @@ const ContactForm = () => {
           noValidate
           autoComplete="off"
         >
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+          >
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="name"
                 className={classes.textFieldLayout}
@@ -111,7 +130,7 @@ const ContactForm = () => {
               />
               {formik.touched.name && formik.errors.name ? (<div>{formik.errors.name}</div>) : <div><p></p></div>}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 id="email"
                 className={classes.textFieldLayout}
@@ -122,6 +141,13 @@ const ContactForm = () => {
               />
               {formik.touched.email && formik.errors.email ? (<div>{formik.errors.email}</div>) : <div><p></p></div>}
             </Grid>
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="center"
+          >
             <Grid item xs={12}>
               <TextField
                 id="message"
@@ -131,13 +157,24 @@ const ContactForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.message}
                 multiline
+                rows={2}
+                rowsMax={4}
               />
             {formik.touched.message && formik.errors.message ? (<div>{formik.errors.message}</div>) : <div><p></p></div>}
             </Grid>
           </Grid>
-          <div className={classes.submitButtonContainer}>
-            <Button className={classes.submitButton} type="submit" variant="outlined">Submit</Button>
-          </div>
+          <Grid
+            container
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <div className={classes.submitButtonContainer}>
+                <Button className={classes.submitButton} type="submit" variant="outlined">Submit</Button>
+              </div>
+            </Grid>
+          </Grid>
         </form>
       </div>
       }

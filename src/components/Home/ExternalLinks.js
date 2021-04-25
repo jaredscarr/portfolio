@@ -1,29 +1,29 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Theme from '../../Theme';
-
 import Code from '@material-ui/icons/Code';
 import GitHub from '@material-ui/icons/GitHub';
 import LinkedIn from '@material-ui/icons/LinkedIn';
 import { Link as MuiLink } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+
+import getTheme from '../../Theme';
+
 
 const ExternalLinks = ({ darkState }) => {
-  let color = 'transparent';
-  const theme = useTheme();
-  const vpWidth = useMediaQuery(theme.breakpoints.down('sm'));
+  const paletteType = darkState ? 'dark' : 'light';
+  const theme = getTheme(paletteType);
   const route = useLocation();
+  let background = 'inherit';
 
   if (route.pathname === '/projects') {
-    color = darkState ? Theme.palette.primary.dark : Theme.palette.primary.main;
+    background = darkState ? theme.palette.primary.dark : theme.palette.primary.light;
   }
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      backgroundColor: color,
+      backgroundColor: background,
       paddingTop: '10vh',
     },
     linkPosition: {
