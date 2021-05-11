@@ -1,113 +1,139 @@
-import React from 'react'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Link from '@material-ui/core/Link'
-import terrain from './static/terrain.png'
-import horizon from './static/horizon.png'
-import swarm from './static/swarm.png'
-import palm from './static/palm.png'
-import raspberry from './static/raspberry.png'
+import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'relative',
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-}));
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Fade from '@material-ui/core/Fade';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-const experiments = [
+import palm from './static/palm.png';
+import dashboard from './static/dashboard.png';
+import getTheme from '../../Theme';
+
+const projects = [
   {
+    id: 1,
     title: "House Plants",
     image: palm,
     heading: "HousePlants",
-    content: "A serverless application with React.",
+    content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
     link: "https://master.d3me9qsquudsan.amplifyapp.com/"
   },
   {
+    id: 2,
     title: "IoT Moisture Dashboard",
-    image: raspberry,
-    heading: "Monitoring Dashboard",
-    content: "RaspberryPi connected through AWS IoT.",
+    image: dashboard,
+    heading: "IoT Dashboard",
+    content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
-  {
-    title: "Float",
-    image: swarm,
-    heading: "Float",
-    content: "Sprite objects with movement triggered by mouse movement",
-    link: `${window.origin}/floatswarm`
-  },
-  {
-    title: "Moving Ground",
-    image: horizon,
-    heading: "Movement",
-    content: "Playing with camera rotation and movement while rotating objects",
-    link: `${window.origin}/horizon`
-  },
-  {
-    title: "Terrain",
-    image: terrain,
-    heading: "Terrain",
-    content: "Terrain example with rough shading",
-    link: `${window.origin}/terrain`
-  },
+  // {
+  //   id: 3,
+  //   title: "House Plants",
+  //   image: palm,
+  //   heading: "HousePlants",
+  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
+  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  // },
+  // {
+  //   id: 4,
+  //   title: "IoT Moisture Dashboard",
+  //   image: dashboard,
+  //   heading: "IoT Dashboard",
+  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
+  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
+  // },
+  // {
+  //   id: 5,
+  //   title: "House Plants",
+  //   image: palm,
+  //   heading: "HousePlants",
+  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
+  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
+  // },
+  // {
+  //   id: 6,
+  //   title: "IoT Moisture Dashboard",
+  //   image: dashboard,
+  //   heading: "IoT Dashboard",
+  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
+  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
+  // },
 ]
 
-const Experiments = () => {
+const Project = ({ project }) => {
+  const useStyles = makeStyles((theme) => ({
+    card: {
+      maxWidth: 300,
+    },
+    cardMedia: {
+      height: 300,
+      width: 300,
+    },
+  }));
+
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.root}>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
-            {experiments.map((exp) => (
-              <Grid item key={exp.link} xs={12} sm={6} md={4}>
-                <Link href={exp.link} underline="none">
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={exp.image}
-                      title={exp.title}
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {exp.heading}
-                      </Typography>
-                      <Typography>
-                        {exp.content}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-    </React.Fragment>
+    <Grid item>
+      <Card className={classes.card}>
+        <Link href={project.link} underline="none">
+          <CardMedia
+            className={classes.cardMedia}
+            image={project.image}
+            title={project.title}
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography color="textSecondary" variant="h5" component="h2" gutterBottom>
+              {project.heading}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {project.content}
+            </Typography>
+          </CardContent>
+        </Link> 
+      </Card>
+    </Grid>
   );
 }
 
-export default Experiments;
+const Projects = ({ darkState }) => {
+
+  const paletteType = darkState ? 'dark' : 'light';
+  const theme = getTheme(paletteType);
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      backgroundColor: darkState ? theme.palette.primary.dark : theme.palette.primary.light,
+    },
+    grid: {
+      paddingTop: '30vh',
+      paddingBottom: '10vh',
+      flexGrow: 1,
+    },
+  }));
+
+  const classes = useStyles();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Fade in={true}>
+        <Paper className={classes.root} elevation={0}>
+          <Grid container className={classes.grid} spacing={2}>
+            <Grid item xs={12}>
+              <Grid className={classes.subContainer} container justify="space-evenly" spacing={10}>
+                {projects.map( project => <Project key={project.id} project={project} /> )}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Fade>
+    </ThemeProvider>
+  );
+}
+
+export default Projects;
