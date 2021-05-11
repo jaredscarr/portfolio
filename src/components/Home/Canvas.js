@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BackgroundCanvas = ({ menuState, darkState }) => {
+const BackgroundCanvas = ({ menuState, darkState, partyState }) => {
   
   const classes = useStyles();
 

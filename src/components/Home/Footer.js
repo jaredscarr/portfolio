@@ -1,11 +1,11 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 
-import { Link as MuiLink } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link as MuiLink } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 
-import getTheme from '../../Theme';
+import getTheme from '../../Theme'
 
 const Copyright = () => {
   return (
@@ -20,11 +20,12 @@ const Copyright = () => {
   );
 }
 
-const Footer = ({ darkState }) => {
-  const paletteType = darkState ? 'dark' : 'light';
-  const theme = getTheme(paletteType);
-  const route = useLocation();
-  let background = 'inherit';
+const Footer = ({ darkState, partyState }) => {
+  const paletteType = darkState ? 'dark' : 'light'
+  const themeType = partyState ? 'party' : 'default'
+  const theme = getTheme(paletteType, themeType)
+  const route = useLocation()
+  let background = 'inherit'
 
   if (route.pathname === '/projects') {
     background = darkState ? theme.palette.primary.dark : theme.palette.primary.light;

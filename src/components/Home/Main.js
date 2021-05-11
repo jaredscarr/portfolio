@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,8 +11,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '20vh',
   },
   title: {
-    letterSpacing: theme.spacing(0.8),
-    fontWieght: 'bold',
+    [theme.breakpoints.up('sm')] : {
+      letterSpacing: theme.spacing(1.2),
+    },
+    letterSpacing: theme.spacing(0.5),
+    fontWeight: 600,
+    fontFamily: 'Raleway',
   },
 }));
 
@@ -19,23 +24,26 @@ const Main = ({ menuState, onClick }) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      className={classes.root}
-      container
-      spacing={0}
-      direction="column"
-      justify="center"
-      alignItems="center"
-    >
-      <Typography
-        className={classes.title}
-        variant="h4"
-        align="center"
-        paragraph
+    <Fade in={true}>
+      <Grid
+        className={classes.root}
+        container
+        spacing={0}
+        direction="column"
+        justify="center"
+        alignItems="center"
       >
-        jaredscarr.com
-      </Typography>
-    </Grid>
+        <Typography
+          className={classes.title}
+          variant="h4"
+          align="center"
+          paragraph
+          color="textSecondary"
+        >
+          jaredscarr.com
+        </Typography>
+      </Grid>
+    </Fade>
   );
 }
 

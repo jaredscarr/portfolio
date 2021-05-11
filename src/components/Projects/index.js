@@ -3,6 +3,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
@@ -19,15 +20,15 @@ const projects = [
     title: "House Plants",
     image: palm,
     heading: "HousePlants",
-    content: "A serverless application with React.",
+    content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
     link: "https://master.d3me9qsquudsan.amplifyapp.com/"
   },
   {
     id: 2,
     title: "IoT Moisture Dashboard",
     image: dashboard,
-    heading: "Dashboard",
-    content: "AWS IoT monitoring a plant.",
+    heading: "IoT Dashboard",
+    content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
   // {
@@ -35,15 +36,15 @@ const projects = [
   //   title: "House Plants",
   //   image: palm,
   //   heading: "HousePlants",
-  //   content: "A serverless application with React.",
+  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
   //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
   // },
   // {
   //   id: 4,
   //   title: "IoT Moisture Dashboard",
   //   image: dashboard,
-  //   heading: "Dashboard",
-  //   content: "AWS IoT monitoring a plant.",
+  //   heading: "IoT Dashboard",
+  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
   //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   // },
   // {
@@ -51,21 +52,24 @@ const projects = [
   //   title: "House Plants",
   //   image: palm,
   //   heading: "HousePlants",
-  //   content: "A serverless application with React.",
+  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
   //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
   // },
   // {
   //   id: 6,
   //   title: "IoT Moisture Dashboard",
   //   image: dashboard,
-  //   heading: "Dashboard",
-  //   content: "AWS IoT monitoring a plant.",
+  //   heading: "IoT Dashboard",
+  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
   //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   // },
 ]
 
 const Project = ({ project }) => {
   const useStyles = makeStyles((theme) => ({
+    card: {
+      maxWidth: 300,
+    },
     cardMedia: {
       height: 300,
       width: 300,
@@ -84,10 +88,10 @@ const Project = ({ project }) => {
             title={project.title}
           />
           <CardContent className={classes.cardContent}>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography color="textSecondary" variant="h5" component="h2" gutterBottom>
               {project.heading}
             </Typography>
-            <Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
               {project.content}
             </Typography>
           </CardContent>
@@ -117,15 +121,17 @@ const Projects = ({ darkState }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper className={classes.root} elevation={0}>
-        <Grid container className={classes.grid} spacing={2}>
-          <Grid item xs={12}>
-            <Grid className={classes.subContainer} container justify="space-evenly" spacing={10}>
-              {projects.map( project => <Project key={project.id} project={project} /> )}
+      <Fade in={true}>
+        <Paper className={classes.root} elevation={0}>
+          <Grid container className={classes.grid} spacing={2}>
+            <Grid item xs={12}>
+              <Grid className={classes.subContainer} container justify="space-evenly" spacing={10}>
+                {projects.map( project => <Project key={project.id} project={project} /> )}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </Fade>
     </ThemeProvider>
   );
 }

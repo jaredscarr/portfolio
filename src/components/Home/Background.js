@@ -1,159 +1,72 @@
-import React, { useRef, useEffect, useState } from 'react';
-import * as THREE from 'three';
-import { useFrame, useThree } from '@react-three/fiber';
-import { useSpring, animated } from 'react-spring/three';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React, { useRef, useMemo, Fragment } from 'react'
+import { Billboard, useTexture, Stars } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
-import getTheme from '../../Theme';
+const Cloud = ({ size = 1, opacity = 0.1, speed = 0.4, spread = 10, length = 1.5, segments = 20, dir = 1, ...props }) => {
+  const group = useRef()
+  const texture = useTexture("/cloud.png")
 
-// const getHexInt = (color) => return parseInt(color.substr(1), 16);
+  const clouds = useMemo(
+    () =>
+      [...new Array(segments)].map((_, index) => ({
+        x: spread / 2 - Math.random() * spread,
+        y: spread / 2 - Math.random() * spread,
+        scale: 0.4 + Math.sin(((index + 1) / segments) * Math.PI) * ((0.2 + Math.random()) * 10) * size,
+        density: Math.max(0.2, Math.random()),
+        rotation: Math.max(0.002, 0.005 * Math.random()) * speed,
+      })),
+    [spread, segments, speed, size],
+  )
 
-// function Box(props) {
-
-//   const mesh = useRef()
-//   useFrame(() => (mesh.current.rotation.x += 0.01))
-
-//   return (
-//     <animated.mesh
-//         {...props}
-//         ref={mesh}
-//       >
-//         <boxGeometry
-//           attach="geometry"
-//           args={[2, 2, 2, 32, 32, 32]}
-//         />
-//         <animated.meshStandardMaterial attach="material" color={props.color} />
-//       </animated.mesh>
-//   )
-// }
-
-function OctahedronGeometry(props) {
-
-  const mesh = useRef();
-  // add dependency array
-  // what is this being used for / as? is the animation being handled in the spring or here?
-  useEffect(() => mesh.current.rotation.x += 2);
+  useFrame((state) =>
+    group.current?.children.forEach((cloud, index) => {
+      cloud.rotation.z += clouds[index].rotation * dir
+      cloud.scale.setScalar(clouds[index].scale + (((1 + Math.sin(state.clock.getElapsedTime() / 10)) / 2) * index) / 10)
+    }),
+  )
 
   return (
-    <animated.mesh
-        {...props}
-        ref={mesh}
-      >
-        <octahedronGeometry
-          attach="geometry"
-          args={props.args}
-        />
-        <animated.meshStandardMaterial attach="material" color={props.color} wireframe={props.wireframe} />
-      </animated.mesh>
+    <group {...props}>
+      <group position={[0, 0, (segments / 2) * length]} ref={group}>
+        {clouds.map(({ x, y, scale, density }, index) => (
+          <Billboard key={index} scale={[scale, scale, scale]} position={[x, y, -index * length]} lockZ>
+            <meshStandardMaterial map={texture} transparent opacity={(scale / 6) * density * opacity} depthTest={false} />
+          </Billboard>
+        ))}
+      </group>
+    </group>
   )
 }
 
-const Menu = ({ menuState, darkState }) => {
-
-  const paletteType = darkState ? 'dark' : 'light';
-  const theme = getTheme(paletteType);
-
-  const vertices = [[-1, 0, 0], [0, 1, 0], [1, 0, 0], [0, -1, 0], [-1, 0, 0]];
-  const { color, pos, ...props } = useSpring({
-    color: darkState ? theme.palette.secondary.light : theme.palette.secondary.dark,
-    pos: menuState ? [0, 0, 0] : [0, 0, 2],
-    'material-opacity': menuState ? 0.25 : 0.6,
-    scale: menuState ? [1, 1, 1] : [1.5, 1.5, 1.5],
-    rotation: menuState ? [0, 0, 0] : [THREE.Math.degToRad(180), 0, THREE.Math.degToRad(45)],
-    config: { mass: 10, tension: 1000, friction: 300, precision: 0.00001 }
-  });
-
-  return (
-    <group>
-      <animated.line position={pos}>
-        <bufferGeometry attach="geometry" vertices={vertices.map(v => new THREE.Vector3(...v))} />
-        <animated.lineBasicMaterial attach="material" color={color} />
-      </animated.line>
-      <animated.mesh {...props}>
-        <octahedronGeometry attach="geometry" />
-        <meshStandardMaterial attach="material" color={darkState ? theme.palette.primary.dark : theme.palette.primary.light} />
-      </animated.mesh>
-    </group>
-  );
+const Clouds = ({ menuState }) => {
+  return <Cloud size={2} rotation={[0, Math.PI / 2, 0]} position={[0, 75, -100]} scale={[10, 10, 10]} />
 }
 
-// const BackDrop = ({ darkState }) => {
-
-//   const dark = Theme.palette.primary.dark;
-//   const light = Theme.palette.primary.main;
-
-//   return (
-//     <mesh receiveShadow position={[0, -1, -5]}>
-//       <planeBufferGeometry attach="geometry" args={[500, 500]} />
-//       <meshStandardMaterial attach="material" color={darkState ? dark : light} />
-//     </mesh>
-//   );
-// }
+const NightSky = () => {
+  return ( 
+    <Stars
+      radius={100} // Radius of the inner sphere (default=100)
+      depth={50} // Depth of area where stars should fit (default=50)
+      count={1000} // Amount of stars (default=5000)
+      factor={4} // Size factor (default=4)
+      saturation={0} // Saturation 0-1 (default=0)
+      fade // Faded dots (default=false)
+    />
+  )
+}
 
 const Background = ({ menuState, darkState }) => {
 
-  // const octaOneProps = useSpring({
-  //   position: menuState ? [-2, 0, 0] : [2, 0, 0],
-  //   scale: menuState ? [0, 0, 0] : [0.4, 0.4, 0.4],
-  //   config: {
-  //     duration: 4000
-  //   }
-    // to: {
-    //   position: [2, 0, 0],
-    //   scale: menuState ? [0, 0, 0] : [0.4, 0.4, 0.4],
-    // },
-    // from: {
-    //   position: [-2, 0, 0],
-    //   scale: menuState ? [0.4, 0.4, 0.4] : [0, 0, 0],
-    // },
-    // config: {
-    //   duration: 2000,
-    // }
-  // });
+  const sky = darkState ? <NightSky /> : undefined
 
-  // const octaTwoProps = useSpring({
-  //   to: {
-  //     position: [-2, 0, 0],
-  //     scale: menuState ? [0.4, 0.4, 0.4] : [0, 0, 0],
-  //   },
-  //   from: {
-  //     position: [2, 0, 0],
-  //     scale: menuState ? [0, 0, 0] : [0.4, 0.4, 0.4],
-  //   },
-  //   config: {
-  //     duration: 3000,
-  //   }
-  // });
-
-
-  // const menuProps = useSpring({
-  //   position: menuState ? [-10, 10, 0] : [0, 0, 0],
-  // });
-
-    return (
-      <React.Fragment>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Menu menuState={menuState} darkState={darkState}/>
-      </React.Fragment>
-    );
-
-  // return (
-  //   <React.Fragment>
-  //     <BackDrop darkState={darkState} />
-  //     <ambientLight />
-  //     <pointLight position={[10, 10, 10]} />
-  //     <Menu menuState={menuState} darkState={darkState}/>
-  //   </React.Fragment>
-  // );
-
-	// return (
- //    <React.Fragment>
- //      <ambientLight />
- //      <pointLight position={[10, 10, 10]} />
- //      <OctahedronGeometry args={[2, 1]} position={octaOneProps.position} scale={octaOneProps.scale} color='blue' wireframe={true} />
- //    </React.Fragment>
- //  );
+  return (
+    <Fragment>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      { sky }
+      <Clouds menuState={menuState} />
+    </Fragment>
+  );
 }
 
 export default Background;
