@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       marginTop: '10vh',
     },
+    marginBottom: '15vh',
   },
   textFieldLayout: {
     width: '50%',
@@ -43,9 +44,16 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.spacing(1.5),
     padding: theme.spacing(0.5),
   },
-  messagePlaceholder: {
-    padding: theme.spacing(12),
-  }
+  messageContainer: {
+    marginTop: '35vh',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '30vh',
+    },
+    marginBottom: '30vh',
+  },
+  message: {
+    padding: theme.spacing(2),
+  },
 }));
 
 const validate = values => {
@@ -199,10 +207,29 @@ const ContactForm = () => {
         </div>
         }
         {!formVisible &&
-        <div className={classes.messagePlaceholder}>
-          <h5>Message Sent!</h5>
-          <p>Thank you! I will get back to you as soon as possible.</p>
-        </div>
+        <Grid
+          className={classes.messageContainer}
+          container
+          direction="column"
+        >
+          <Grid item>
+            <Typography
+              className={classes.message}
+              color="textSecondary"
+              variant="h5"
+            >
+              Message Sent!
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography
+              className={classes.message}
+              color="textSecondary"
+              variant="body1">
+                Thank you! I will get back to you as soon as possible.
+            </Typography>
+          </Grid>
+        </Grid>
         }
       </div>
     </Fade>
