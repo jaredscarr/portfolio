@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ThemeToggle = ({ darkState, handleDarkThemeChange, partyState, handlePartyThemeChange }) => {
+const ThemeToggle = ({ darkState, handleDarkThemeChange }) => {
   const classes = useStyles();
   const [drawerState, setDrawerState] = useState(false);
 
@@ -40,17 +40,9 @@ const ThemeToggle = ({ darkState, handleDarkThemeChange, partyState, handleParty
   const themes = [
     {
       themeName: 'Dark',
-      // label: darkState ? 'Light' : 'Dark',
       icon: darkState ? <Brightness3Icon /> : <Brightness4Icon />,
       onChange: handleDarkThemeChange,
       checked: darkState,
-    },
-    {
-      themeName: 'Party',
-      // label: partyState ? 'Shut It Down' : 'Party',
-      icon: <InvertColorsSharpIcon />,
-      onChange: handlePartyThemeChange,
-      checked: partyState,
     },
   ]
 

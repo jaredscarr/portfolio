@@ -12,14 +12,9 @@ const App = () => {
   const [menuState, setMenuState] = useState(true)
   // theme states
   const [darkState, setDarkState] = useState(true)
-  const [partyState, setPartyState] = useState(false)
 
   const handleDarkThemeChange = () => {
     setDarkState(!darkState)
-  };
-
-  const handlePartyThemeChange = () => {
-    setPartyState(!partyState)
   };
 
   const onClickHandler = (event) => {
@@ -31,8 +26,7 @@ const App = () => {
   }
 
   const paletteType = darkState ? 'dark' : 'light'
-  const themeType = partyState ? 'party' : 'default'
-  const theme = getTheme(paletteType, themeType)
+  const theme = getTheme(paletteType)
   let backgroundColor = darkState ? theme.palette.primary.dark : theme.palette.primary.light
   // rerender the backgroundColor when the theme type changes
   useEffect(() => {
@@ -52,15 +46,11 @@ const App = () => {
       <Paper className={classes.root}>
         <Overlay
           darkState={darkState}
-          partyState={partyState}
           navClick={onClickHandler}
           handleDarkThemeChange={handleDarkThemeChange}
-          handlePartyThemeChange={handlePartyThemeChange}
         />
   		  <BackgroundCanvas
-          menuState={menuState}
           darkState={darkState}
-          partyState={partyState}
         />
       </Paper>
     </ThemeProvider>

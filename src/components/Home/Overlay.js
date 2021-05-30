@@ -14,7 +14,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/core/styles'
 
-const Overlay = ({ navClick, handleDarkThemeChange, darkState, handlePartyThemeChange, partyState }) => {
+const Overlay = ({ navClick, handleDarkThemeChange, darkState }) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,17 +37,16 @@ const Overlay = ({ navClick, handleDarkThemeChange, darkState, handlePartyThemeC
           <Nav navClick={navClick} />
           <ThemeToggle
             darkState={darkState}
-            partyState={partyState}
             handleDarkThemeChange={handleDarkThemeChange}
-            handlePartyThemeChange={handlePartyThemeChange} />
+           />
         </Toolbar>
       </AppBar>
       <Route path="/" exact component={Main} />
       <Route path="/about" component={About} />
-      <Route path="/projects" render={() => <Projects darkState={darkState} />} />
+        <Route path="/projects" render={() => <Projects darkState={darkState} />} />
       <Route path="/contact" component={ContactForm} />
-      <ExternalLinks darkState={darkState} partyState={partyState} />
-      <Footer darkState={darkState} partyState={partyState} />
+      <ExternalLinks darkState={darkState} />
+      <Footer darkState={darkState} />
     </div>
   );
 }

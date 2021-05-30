@@ -25,10 +25,6 @@ const ExternalLinks = ({ darkState, partyState }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       backgroundColor: background,
-      // paddingTop: '10vh',
-    },
-    link: {
-      // margin: theme.spacing(2),
     },
   }));
   
@@ -54,7 +50,7 @@ const ExternalLinks = ({ darkState, partyState }) => {
           >
             <Typography
               align="center"
-              color="textSecondary"
+              color="textPrimary"
             > 
               <LinkedIn />
             </Typography>
@@ -71,7 +67,7 @@ const ExternalLinks = ({ darkState, partyState }) => {
           >
             <Typography
               align="center"
-              color="textSecondary"
+              color="textPrimary"
             >
               <GitHub />
             </Typography>

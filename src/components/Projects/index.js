@@ -31,41 +31,13 @@ const projects = [
     content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
     link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
   },
-  // {
-  //   id: 3,
-  //   title: "House Plants",
-  //   image: palm,
-  //   heading: "HousePlants",
-  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
-  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
-  // },
-  // {
-  //   id: 4,
-  //   title: "IoT Moisture Dashboard",
-  //   image: dashboard,
-  //   heading: "IoT Dashboard",
-  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
-  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
-  // },
-  // {
-  //   id: 5,
-  //   title: "House Plants",
-  //   image: palm,
-  //   heading: "HousePlants",
-  //   content: "Keep track and get information on your indoor plants. A serverless application with AWS and react.",
-  //   link: "https://master.d3me9qsquudsan.amplifyapp.com/"
-  // },
-  // {
-  //   id: 6,
-  //   title: "IoT Moisture Dashboard",
-  //   image: dashboard,
-  //   heading: "IoT Dashboard",
-  //   content: "Monitor soil moisture with a Raspberry Pi registred as an IoT device through AWS. Dashboard built with react and recharts.",
-  //   link: "https://main.d3npdl9pvgwz4b.amplifyapp.com/"
-  // },
 ]
 
-const Project = ({ project }) => {
+const Project = ({ project, darkState, partyState }) => {
+  const themeType = partyState ? 'party' : 'default'
+  const paletteType = darkState ? 'dark' : 'light'
+  const theme = getTheme(paletteType, themeType)
+
   const useStyles = makeStyles((theme) => ({
     card: {
       maxWidth: 300,
@@ -76,35 +48,34 @@ const Project = ({ project }) => {
     },
   }));
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Grid item>
-      <Card className={classes.card}>
-        <Link href={project.link} underline="none">
-          <CardMedia
-            className={classes.cardMedia}
-            image={project.image}
-            title={project.title}
-          />
-          <CardContent className={classes.cardContent}>
-            <Typography color="textSecondary" variant="h5" component="h2" gutterBottom>
-              {project.heading}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {project.content}
-            </Typography>
-          </CardContent>
-        </Link> 
-      </Card>
+      <ThemeProvider theme={theme}>
+        <Card className={classes.card} elevation={10}>
+          <Link href={project.link} underline="none">
+            <CardMedia
+              className={classes.cardMedia}
+              image={project.image}
+              title={project.title}
+            />
+            <CardContent>
+              <Typography color="textSecondary" variant="h5" gutterBottom>
+                {project.heading}
+              </Typography>
+              <Typography color="textSecondary" variant="body2">
+                {project.content}
+              </Typography>
+            </CardContent>
+          </Link> 
+        </Card>
+      </ThemeProvider>
     </Grid>
   );
 }
 
-const Projects = ({ darkState }) => {
-
-  const paletteType = darkState ? 'dark' : 'light';
-  const theme = getTheme(paletteType);
+const Projects = ({ darkState, partyState }) => {
   
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -117,22 +88,32 @@ const Projects = ({ darkState }) => {
     },
   }));
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
-    <ThemeProvider theme={theme}>
-      <Fade in={true}>
-        <Paper className={classes.root} elevation={0}>
-          <Grid container className={classes.grid} spacing={2}>
-            <Grid item xs={12}>
-              <Grid className={classes.subContainer} container justify="space-evenly" spacing={10}>
-                {projects.map( project => <Project key={project.id} project={project} /> )}
-              </Grid>
+    <Fade in={true}>
+      <Paper className={classes.root} elevation={0}>
+        <Grid container className={classes.grid} spacing={2}>
+          <Grid item xs={12}>
+            <Grid
+              className={classes.subContainer}
+              container
+              justify="space-evenly"
+              spacing={10}
+            >
+              {projects.map( project => 
+                <Project
+                  key={project.id}
+                  project={project}
+                  darkState={darkState}
+                  partyState={partyState}
+                />
+              )}
             </Grid>
           </Grid>
-        </Paper>
-      </Fade>
-    </ThemeProvider>
+        </Grid>
+      </Paper>
+    </Fade>
   );
 }
 
