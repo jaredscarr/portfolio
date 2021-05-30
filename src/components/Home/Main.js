@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       letterSpacing: theme.spacing(1.2),
     },
     letterSpacing: theme.spacing(0.5),
-    fontWeight: 600,
+    fontWeight: 700,
     fontFamily: 'Raleway',
   },
 }));
@@ -38,7 +38,6 @@ const Main = ({ menuState, onClick }) => {
           variant="h4"
           align="center"
           paragraph
-          color="textSecondary"
         >
           jaredscarr.com
         </Typography>

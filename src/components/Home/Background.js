@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, Fragment } from 'react'
-import { Billboard, useTexture, Stars } from '@react-three/drei'
+import { Billboard, useTexture, Stars, Tetrahedron } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 const Cloud = ({ size = 1, opacity = 0.1, speed = 0.4, spread = 10, length = 1.5, segments = 20, dir = 1, ...props }) => {
@@ -38,33 +38,34 @@ const Cloud = ({ size = 1, opacity = 0.1, speed = 0.4, spread = 10, length = 1.5
   )
 }
 
-const Clouds = ({ menuState }) => {
-  return <Cloud size={2} rotation={[0, Math.PI / 2, 0]} position={[0, 75, -100]} scale={[10, 10, 10]} />
+const Clouds = ({ opacity, size }) => {
+  return <Cloud size={size} rotation={[0, Math.PI / 2, 0]} position={[0, 75, -100]} scale={[10, 10, 10]} opacity={opacity} />
 }
 
-const NightSky = () => {
+const NightSky = ({ factor }) => {
   return ( 
     <Stars
       radius={100} // Radius of the inner sphere (default=100)
       depth={50} // Depth of area where stars should fit (default=50)
       count={1000} // Amount of stars (default=5000)
-      factor={4} // Size factor (default=4)
+      factor={factor} // Size factor (default=4)
       saturation={0} // Saturation 0-1 (default=0)
       fade // Faded dots (default=false)
     />
   )
 }
 
-const Background = ({ menuState, darkState }) => {
-
-  const sky = darkState ? <NightSky /> : undefined
+const Background = ({ darkState }) => {
+  const cloud_opacity = darkState ? 0.1 : 0.6
+  const cloud_size = darkState ? 2 : 3
+  const star_factor = darkState ? 7 : 4
 
   return (
     <Fragment>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      { sky }
-      <Clouds menuState={menuState} />
+      <NightSky factor={star_factor} />
+      <Clouds opacity={cloud_opacity} size={cloud_size} />
     </Fragment>
   );
 }
