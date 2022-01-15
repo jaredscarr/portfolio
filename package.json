@@ -16,7 +16,7 @@
     "formik": "^2.1.7",
     "history": "^5.0.0",
     "mutationobserver-shim": "^0.3.7",
-    "node-forge": "^0.10.0",
+    "node-forge": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
