@@ -1,72 +1,75 @@
-import React, { useRef, useMemo, Fragment } from 'react'
-import { Billboard, useTexture, Stars, Tetrahedron } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import React, { useRef, useState } from 'react';
+import * as THREE from 'three';
+import { useFrame, useThree } from '@react-three/fiber';
+import { Image, ScrollControls, Scroll, useScroll } from '@react-three/drei'; 
+import { useSnapshot } from 'valtio';
+import { Minimap } from './Minimap';
+import { state, damp } from './util';
 
-const Cloud = ({ size = 1, opacity = 0.1, speed = 0.4, spread = 10, length = 1.5, segments = 20, dir = 1, ...props }) => {
-  const group = useRef()
-  const texture = useTexture("/cloud.png")
+function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
+  const ref = useRef();
+  const scroll = useScroll();
+  const { clicked, urls } = useSnapshot(state);
+  const [hovered, hover] = useState(false);
+  // const click = () => (state.clicked = index === clicked ? null : index);
+  const click = () => {
+    state.clicked = index === clicked ? null : index;
+    if (index === clicked) {
+      if(ref.current.href !=null) {
+        window.open(ref.current.href, "_blank");
+      }
+    }
+  }
+  const over = () => hover(true);
+  const out = () => hover(false);
 
-  const clouds = useMemo(
-    () =>
-      [...new Array(segments)].map((_, index) => ({
-        x: spread / 2 - Math.random() * spread,
-        y: spread / 2 - Math.random() * spread,
-        scale: 0.4 + Math.sin(((index + 1) / segments) * Math.PI) * ((0.2 + Math.random()) * 10) * size,
-        density: Math.max(0.2, Math.random()),
-        rotation: Math.max(0.002, 0.005 * Math.random()) * speed,
-      })),
-    [spread, segments, speed, size],
-  )
+  useFrame((state, delta) => {
+    const y = scroll.curve(index / urls.length - 1.5 / urls.length, 4 / urls.length);
+    ref.current.material.scale[1] = ref.current.scale.y = damp(ref.current.scale.y, clicked === index ? 5 : 4 + y, 8, delta);
+    ref.current.material.scale[0] = ref.current.scale.x = damp(ref.current.scale.x, clicked === index ? 4.7 : scale[0], 6, delta);
+    if (clicked !== null && index < clicked) ref.current.position.x = damp(ref.current.position.x, position[0] - 2, 6, delta);
+    if (clicked !== null && index > clicked) ref.current.position.x = damp(ref.current.position.x, position[0] + 2, 6, delta);
+    if (clicked === null || clicked === index) ref.current.position.x = damp(ref.current.position.x, position[0], 6, delta);
+    ref.current.material.grayscale = damp(ref.current.material.grayscale, hovered || clicked === index ? 0 : Math.max(0, 1 - y), 6, delta);
+    ref.current.material.color.lerp(c.set(hovered || clicked === index ? 'white' : '#aaa'), hovered ? 0.3 : 0.1);
+  })
 
-  useFrame((state) =>
-    group.current?.children.forEach((cloud, index) => {
-      cloud.rotation.z += clouds[index].rotation * dir
-      cloud.scale.setScalar(clouds[index].scale + (((1 + Math.sin(state.clock.getElapsedTime() / 10)) / 2) * index) / 10)
-    }),
-  )
+  return <Image ref={ref} {...props} position={position} scale={scale} onClick={click} onPointerOver={over} onPointerOut={out} href={props.href} />
+}
+
+function Items({ w = 0.7, gap = 0.15 }) {
+  const { urls } = useSnapshot(state);
+  const { width } = useThree((state) => state.viewport);
+  const xW = w + gap;
+  const hrefs = [
+    'https://master.d3me9qsquudsan.amplifyapp.com/',
+    'https://main.d3npdl9pvgwz4b.amplifyapp.com/',
+    'https://www.linkedin.com/in/jaredscarr',
+    'https://github.com/jaredscarr',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,  
+  ] // TODO: map hrefs to the right keys
 
   return (
-    <group {...props}>
-      <group position={[0, 0, (segments / 2) * length]} ref={group}>
-        {clouds.map(({ x, y, scale, density }, index) => (
-          <Billboard key={index} scale={[scale, scale, scale]} position={[x, y, -index * length]} lockZ>
-            <meshStandardMaterial map={texture} transparent opacity={(scale / 6) * density * opacity} depthTest={false} />
-          </Billboard>
-        ))}
-      </group>
-    </group>
-  )
-}
-
-const Clouds = ({ opacity, size }) => {
-  return <Cloud size={size} rotation={[0, Math.PI / 2, 0]} position={[0, 75, -100]} scale={[10, 10, 10]} opacity={opacity} />
-}
-
-const NightSky = ({ factor }) => {
-  return ( 
-    <Stars
-      radius={100} // Radius of the inner sphere (default=100)
-      depth={50} // Depth of area where stars should fit (default=50)
-      count={1000} // Amount of stars (default=5000)
-      factor={factor} // Size factor (default=4)
-      saturation={0} // Saturation 0-1 (default=0)
-      fade // Faded dots (default=false)
-    />
+    <ScrollControls horizontal damping={10} pages={(width - xW + urls.length * xW) / width}>
+      <Minimap />
+      <Scroll>
+        {urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} href={hrefs[i]} />)}
+      </Scroll>
+    </ScrollControls>
   )
 }
 
 const Background = ({ darkState }) => {
-  const cloud_opacity = darkState ? 0.1 : 0.6
-  const cloud_size = darkState ? 2 : 3
-  const star_factor = darkState ? 7 : 4
 
   return (
-    <Fragment>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <NightSky factor={star_factor} />
-      <Clouds opacity={cloud_opacity} size={cloud_size} />
-    </Fragment>
+    <Items />
   );
 }
 
