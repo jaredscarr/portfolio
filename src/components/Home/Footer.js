@@ -1,48 +1,90 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
-
-import { Link as MuiLink } from '@material-ui/core'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-
-import getTheme from '../../Theme'
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Switch from '@mui/material/Switch';
+import GitHub from '@mui/icons-material/GitHub';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import Typography from '@mui/material/Typography';
+import Brightness3Icon from '@mui/icons-material/Brightness3';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 
 const Copyright = () => {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography
+      fontSize={10}
+      color="textSecondary"
+      align="center">
       {'Copyright © '}
-      <MuiLink color="inherit" href="https://jaredscarr.com/">
-        jaredscarr.com
-      </MuiLink>{' '}
+        jaredscarr.com{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
 
-const Footer = ({ darkState, partyState }) => {
-  const paletteType = darkState ? 'dark' : 'light'
-  const themeType = partyState ? 'party' : 'default'
-  const theme = getTheme(paletteType, themeType)
-  const route = useLocation()
-  let background = 'inherit'
+const Footer = ({ darkState, handleDarkThemeChange }) => {
+  // const paletteType = darkState ? 'dark' : 'light';
+  let icon =  darkState ? <Brightness3Icon /> : <Brightness4Icon />;
 
-  if (route.pathname === '/projects') {
-    background = darkState ? theme.palette.primary.dark : theme.palette.primary.light;
-  }
-
-  const useStyles = makeStyles((theme) => ({
-    footer: {
-      backgroundColor: background,
-      paddingTop: '5vh',
-      paddingBottom: '3vh',
-    },
-  }));
-
-  const classes = useStyles();
   return (
-    <footer className={classes.footer}>
-      <Copyright />
+    <footer>
+      <Grid
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="flex-end"
+      >
+        <Grid item xs={6} sm={6} md={3}>
+          <Link
+            color="inherit"
+            variant="inherit"
+            href="https://www.linkedin.com/in/jaredscarr"
+            target="_blank"
+            rel="noreferrer moopener"
+          >
+            <Typography
+              align="center"
+              color="textPrimary"
+            > 
+              <LinkedIn />
+            </Typography>
+          </Link>
+        </Grid>
+        <Grid item xs={6} sm={6} md={3}>
+          <Link
+            color="inherit"
+            variant="inherit"
+            href="https://github.com/jaredscarr"
+            target="_blank"
+            rel="noreferrer moopener"
+          >
+            <Typography
+              align="center"
+              color="textPrimary"
+            >
+              <GitHub />
+            </Typography>
+          </Link>
+        </Grid>
+        <Grid item xs={6} sm={6} md={3}>
+          <Typography
+            align="center"
+            color="textPrimary">
+            {icon}
+          </Typography>
+        </Grid>
+        <Grid item xs={6} sm={6} md={3}>
+        <Typography
+          align="center"
+          color="textPrimary"
+        >
+          <Switch checked={darkState} onChange={handleDarkThemeChange} size="small" color="secondary"/>
+        </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Copyright />
+        </Grid>
+      </Grid>
     </footer>
   );
 }

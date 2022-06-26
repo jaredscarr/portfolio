@@ -1,45 +1,41 @@
 import React from 'react';
+import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import getTheme from '../../Theme';
 
-import Grid from '@material-ui/core/Grid';
-import Fade from '@material-ui/core/Fade'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+const Main = ({ menuState, onClick, darkState }) => {
+  const paletteType = darkState ? 'dark' : 'light';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: '40vh',
-    marginBottom: '35vh',
-  },
-  title: {
-    [theme.breakpoints.up('sm')] : {
-      letterSpacing: theme.spacing(1.2),
-    },
-    letterSpacing: theme.spacing(0.5),
-    fontWeight: 700,
-    fontFamily: 'Raleway',
-  },
-}));
-
-const Main = ({ menuState, onClick }) => {
-  const classes = useStyles();
+  const theme = getTheme(paletteType, 'default');
 
   return (
     <Fade in={true}>
       <Grid
-        className={classes.root}
+        sx={{
+          marginTop: '40vh',
+          marginBottom: '35vh',
+        }}
         container
         spacing={0}
         direction="column"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
       >
         <Typography
-          className={classes.title}
+          sx={{
+            letterSpacing: {
+              sm: theme.spacing(1.2),
+              md: theme.spacing(0.5),
+            },
+            fontWeight: 700,
+            fontFamily: 'Raleway',
+          }}
           variant="h4"
           align="center"
           paragraph
         >
-          jaredscarr.com
+          {/* jaredscarr.com */}
         </Typography>
       </Grid>
     </Fade>

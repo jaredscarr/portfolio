@@ -1,12 +1,12 @@
 
-import { createMuiTheme } from '@material-ui/core/styles'
-import lightBlue from '@material-ui/core/colors/lightBlue'
-import blueGrey from '@material-ui/core/colors/blueGrey'
+import { createTheme } from '@mui/material/styles';
+import lightBlue from '@mui/material/colors/lightBlue';
+import blueGrey from '@mui/material/colors/blueGrey';
 
 const defaultTheme = (type) => {
-  return createMuiTheme({
+  return createTheme({
     palette: {
-      type: type,
+      mode: type,
       primary: {
         main: blueGrey[900],
       },
@@ -18,7 +18,7 @@ const defaultTheme = (type) => {
 }
 
 const getTheme = (type, theme='default') => {
-  return defaultTheme(type)
+  return defaultTheme(type);
 }
 
 export default getTheme;

@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Divider from '@material-ui/core/Divider'
-import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
+import Brightness3Icon from '@mui/icons-material/Brightness3';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-const Nav = ({ navClick, darkState }) => {
-  const classes = useStyles();
+const Nav = ({ navClick, darkState, handleDarkThemeChange }) => {
+
   const [drawerState, setDrawerState] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -28,19 +25,21 @@ const Nav = ({ navClick, darkState }) => {
     }
 
     setDrawerState(open);
-    navClick()
+    navClick();
   };
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const handleClose = (event) => {
-    navClick()
-    toggleDrawer(false)
+    navClick();
+    toggleDrawer(false);
 
     if (event.currentTarget.attributes.url !== undefined) {
-      history.push(event.currentTarget.attributes.url.value);
+      navigate(event.currentTarget.attributes.url.value);
     }
   };
+
+  let icon =  darkState ? <Brightness3Icon /> : <Brightness4Icon />;
 
   const routes = [
     {
@@ -51,19 +50,19 @@ const Nav = ({ navClick, darkState }) => {
     //   label: 'About',
     //   path: '/about',
     // },
-    {
-      label: 'Projects',
-      path: '/projects',
-    },
-    {
-      label: 'Contact',
-      path: '/contact',
-    }
+    // {
+    //   label: 'Projects',
+    //   path: '/projects',
+    // },
+    // {
+    //   label: 'Contact',
+    //   path: '/contact',
+    // }
   ];
 
   const list = () => (
-    <div
-      className={classes.list}
+    <Box
+      sx={{width: 250}}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -75,25 +74,34 @@ const Nav = ({ navClick, darkState }) => {
             <ListItemText primary={route.label} />
           </ListItem>
         ))}
+        <Divider />
+        <ListItem button key="mode">
+        <ListItemIcon>{icon}</ListItemIcon>
+          <FormControlLabel
+            control={<Switch checked={darkState} onChange={handleDarkThemeChange} size="small" />}
+          />
+          
+        </ListItem>
       </List>
-      <Divider />
-    </div>
+    </Box>
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer(true)}>
+    <Box>
+      <Button
+        onClick={toggleDrawer(true)}
+        color='inherit'
+      >
         <MenuOutlinedIcon />
       </Button>
       <Drawer
-        className={classes.root}
         anchor="left"
         open={drawerState}
         transitionDuration={{ enter: 200, exit: 500 }}
       >
         {list()}
       </Drawer>
-    </div>
+    </Box>
   );
 }
 
